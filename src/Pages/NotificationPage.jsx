@@ -3,12 +3,15 @@ import { useAuth } from "../hooks/AuthProvider";
 import { CiLock } from "react-icons/ci";
 import getTimeDifference from "../utils/getTimeDifference";
 import { TbNotification } from "react-icons/tb";
+import Navbar from "../Components/ui/Navbar";
+
 
 const NotificationPage = () => {
   const auth = useAuth();
 
   return (
     <>
+      <Navbar />
       <Banner title="Notifications" />
       {auth.user ? (
         <div className="p-10 mx-auto sm:w-5/6">

@@ -6,6 +6,7 @@ import ProductInfo from "../Components/ui/ProductInfo";
 import BiddingList from "../Components/atom/BiddingList";
 import { useAuth } from "../hooks/AuthProvider"
 import { CiLock } from "react-icons/ci";
+import Navbar from "../Components/ui/Navbar";
 
 const AuctionDetail = () => {
   const [product, setProduct] = useState({});
@@ -31,6 +32,7 @@ const AuctionDetail = () => {
 
   return (
     <div>
+      <Navbar />
       <Banner title="Auction Details" />
       <ProductInfo
         id={product.id}
