@@ -11,11 +11,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between bg-white px-6 py-2 align-middle shadow-sm sm:px-12">
+      <nav className="sticky top-0 z-50 flex items-center justify-between bg-white px-10 py-2 align-middle shadow-sm sm:px-12">
         <Link to="/">
           <div className="flex cursor-pointer gap-2 text-lg font-bold text-purple-500">
             <RiAuctionFill size={30} />
-            <p className="text-lg font-bold">Bidz Buddy</p>
+            <p className="text-lg text-purple-950 font-extrabold">Bidzbuddy</p>
           </div>
         </Link>
 
