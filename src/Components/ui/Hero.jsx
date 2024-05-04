@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <>
-      <div className="justify-between text-center lg:text-left gap-10 px-5 pb-6 pt-16 sm:px-16 sm:pb-16 sm:pt-14 lg:grid lg:grid-cols-2">
+      <div className="justify-between text-center bg-purple-100 lg:text-left gap-10 px-5 pb-6 pt-16 sm:px-16 sm:pb-16 sm:pt-14 lg:grid lg:grid-cols-2">
         <div className="p-5">
           <p
             data-aos="fade-down"

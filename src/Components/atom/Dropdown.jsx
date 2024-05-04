@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../../hooks/AuthProvider";
-import { MdOutlineAccountCircle } from "react-icons/md";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useNavigate } from "react-router-dom";
 
 export default function BasicMenu({ title, role }) {
@@ -33,10 +33,10 @@ export default function BasicMenu({ title, role }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         style={{ color: "black" }}
-        className="flex items-center gap-3 align-middle cursor-pointer"
+        className="flex items-center gap-1 align-middle cursor-pointer"
       >
-        <MdOutlineAccountCircle size={20} />
         <p>{title}</p>
+        <ArrowDropDownIcon size={20} />
       </Button>
       <Menu
         id="basic-menu"
@@ -47,7 +47,9 @@ export default function BasicMenu({ title, role }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => navigate("/profile")}>My account</MenuItem>
+        {auth.user.role === "SELLER" && (
+          <MenuItem onClick={() => navigate("/profile")}>Dashboard</MenuItem>
+        )}
         <MenuItem onClick={logout} style={{ color: "purple" }}>
           Logout
         </MenuItem>

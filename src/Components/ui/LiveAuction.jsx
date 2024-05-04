@@ -1,6 +1,7 @@
 import ProductCard2 from "../atom/ProductCard2";
 import Skeleton from "@mui/material/Skeleton";
 import axios from "../../config/axiosConfig";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 import { useEffect, useState } from "react";
 
@@ -38,8 +39,14 @@ const LiveAuction = () => {
       data-aos-once="true"
     >
       <div className="mt-5 mb-10 px-5 sm:text-center">
-        <h1 className="text-2xl font-bold sm:text-4xl">Current Auctions</h1>
+        <h1 className="text-xl font-bold font-saira sm:text-4xl">Current Auctions</h1>
       </div>
+
+      {(!loading && products.length === 0) && (
+        <div className="grid place-items-center my-7 text-gray-500">
+          <img src="/not_found.jpeg" className="w-100 h-100" />
+        </div>
+      )}
 
       <div className="grid gap-4 px-5 sm:grid-cols-3">
         {loading

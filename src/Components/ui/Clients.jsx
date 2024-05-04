@@ -2,19 +2,9 @@ import ClientCard from "../atom/ClientCard";
 
 const Clients = () => {
   return (
-    <section
-      data-aos="fade-up"
-      data-aos-once="true"
-      data-aos-anchor-placement="top-center"
-      data-aos-easing="ease-in-sine"
-      className="py-16 bg-gray-50"
-    >
+    <section className="py-10">
       <div className="px-5 text-justify sm:text-center">
-        <h1 className="text-2xl font-bold sm:text-4xl">What Clients Say</h1>
-        {/* <p className="mx-auto mt-5 text-lg text-slate-600 sm:w-2/4">
-          We are very proud of the service we provide and stand by every product
-          we carry. Read our testimonials from our happy customers.
-        </p> */}
+        <h1 className="text-xl font-bold font-saira sm:text-4xl">What Clients Say</h1>
       </div>
 
       <div className="grid gap-4 p-3 sm:mx-16 sm:grid-cols-3">

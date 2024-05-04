@@ -9,7 +9,7 @@ const Account = () => {
 
   return (
     <>
-      <div className="grid sm:min-h-screen gap-2 bg-gray-100 px-5 py-10 md:grid-cols-12">
+      <div className="grid sm:min-h-screen gap-2 bg-gray-100 px-5 py-10 md:grid-cols-12 font-saira">
         <Sidebar setSelectedSection={setSelectedSection} />
         {selectedSection === "overview" && <Overview />}
         {selectedSection === "mybids"  && <MyBids />}

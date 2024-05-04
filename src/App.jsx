@@ -10,10 +10,27 @@ import Auctions from "./Pages/Auctions";
 import AuctionDetail from "./Pages/AuctionDetail";
 import Profile from "./Pages/Profile";
 import NotificationPage from "./Pages/NotificationPage";
-import SellerDashboardOverview from "./Pages/SellerDashbordOverview";
-import Seller from "./Components/ui/Seller";
 import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/">
+      <Route index path="" element={<LandingPage />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="products" element={<Auctions />} />
+      <Route path="products/:id" element={<AuctionDetail />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="notifications" element={<NotificationPage />} />
+    </Route>
+  )
+)
 
 function App() {
   useEffect(() => {
@@ -31,20 +48,7 @@ function App() {
   return (
     <div className="font-inter">
       <AuthProvider>
-        <Router>
-          <Routes>
-              <Route path="" element={<LandingPage />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="products" element={<Auctions />} />
-              <Route path="products/:id" element={<AuctionDetail />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="notifications" element={<NotificationPage />} />
-              <Route path="seller" element={<Seller />}>
-                <Route path="dashboard" element={<SellerDashboardOverview />} />
-              </Route>
-          </Routes>
-        </Router>
+        <RouterProvider router={router} />
       </AuthProvider>
     </div>
   );
