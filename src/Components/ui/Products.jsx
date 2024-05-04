@@ -3,16 +3,12 @@ import Skeleton from "@mui/material/Skeleton";
 import axios from "../../config/axiosConfig";
 import ProductCard2 from "../atom/ProductCard2";
 import { FiSearch } from "react-icons/fi";
-import InputLabel from "@mui/material/InputLabel";
 import Pagination from "@mui/material/Pagination";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Checkbox from "@mui/material/Checkbox";
-import Select from "@mui/material/Select";
+import AuctionSidebar from "./AuctionSidebar";
+import CategoryDrawer from "../atom/CategoryDrawer";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -23,16 +19,16 @@ const Products = () => {
     setPage(value);
   };
 
+  const changeCategory = (category) => {
+    setCategory(category);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsReponse, categoryResponse] = await Promise.all([
-          axios.get("/api/v1/products"),
-          axios.get("/api/v1/categories"),
-        ]);
+        const response = await axios.get("/api/v1/products");
 
-        setProducts(productsReponse.data);
-        setCategories(categoryResponse.data);
+        setProducts(response.data);
         setLoading(false);
       } catch (error) {
         if (error.resposne) {
@@ -81,47 +77,32 @@ const Products = () => {
   }, [category]);
 
   return (
-    <section className="px-3 py-8 sm:px-10 sm:py-12">
-      <div className="flex sm:justify-between gap-5 align-middle mb-10">
-        <form
-          className="flex w-full gap-3 rounded-md border border-gray-300 p-2 sm:w-1/3"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <FiSearch className="self-center" />
-          <input
-            type="search"
-            placeholder="Search a item or product"
-            className="w-full outline-none"
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </form>
-        <FormControl className="sm:w-60">
-          <InputLabel id="demo-simple-select-label">
-            Select a category
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="Category"
-            onChange={(e) => setCategory(e.target.value)}
+    <section className="px-3 py-8 sm:px-10 sm:py-12 grid sm:grid-cols-12 gap-3">
+      <CategoryDrawer changeCategory={changeCategory} />
+      <AuctionSidebar changeCategory={changeCategory} />
+      <div className="col-span-9">
+        <div className="flex sm:justify-between gap-5 align-middle mb-10">
+          <form
+            className="flex w-full gap-3 rounded-md border border-gray-300 p-2 sm:w-1/3"
+            onSubmit={(e) => e.preventDefault()}
           >
-            {categories.map((category) => (
-              <MenuItem key={category.id} value={category.id}>
-                {category.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-      {!loading && products.length === 0 ? (
-        <div className="min-h-90 grid place-items-center text-gray-600">
-          <img src="/not_found.jpeg" alt="not found" className="w-80" />
+            <FiSearch className="self-center" />
+            <input
+              type="search"
+              placeholder="Search a item or product"
+              className="w-full outline-none"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </form>
         </div>
-      ) : (
-        <div className="grid gap-3 sm:grid-cols-3">
-          {loading
-            ? skeletons.map((_, idx) => (
+        {!loading && products.length === 0 ? (
+          <div className="min-h-90 grid place-items-center text-gray-600">
+            <img src="/not_found.jpeg" alt="not found" className="w-80" />
+          </div>
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-3">
+            {loading
+              ? skeletons.map((_, idx) => (
                 <Skeleton
                   key={idx}
                   variant="rectangular"
@@ -130,7 +111,7 @@ const Products = () => {
                   className="container"
                 />
               ))
-            : products.map((product, idx) => (
+              : products.map((product, idx) => (
                 <ProductCard2
                   key={idx}
                   id={product.id}
@@ -140,14 +121,15 @@ const Products = () => {
                   remainingTime={product.remainingTime}
                 />
               ))}
-        </div>
-      )}
+          </div>
+        )}
 
-      {products.length > 0 && (
-        <div className="my-10 grid place-items-center">
-          <Pagination count={3} page={page} onChange={handleChange} />
-        </div>
-      )}
+        {products.length > 0 && (
+          <div className="my-10 grid place-items-center">
+            <Pagination count={3} page={page} onChange={handleChange} />
+          </div>
+        )}
+      </div>
     </section>
   );
 };
