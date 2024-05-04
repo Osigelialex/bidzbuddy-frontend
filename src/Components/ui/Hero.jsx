@@ -41,10 +41,10 @@ const Hero = () => {
             START EXPLORING
           </button>
         </div>
-        <div className="relative hidden min-h-full lg:block">
+        <div className="relative hidden min-h-full lg:block rounded-full">
           <img
             src="/bidding-image.avif"
-            className="relative h-full w-full object-cover"
+            className="relative h-full w-full object-cover rounded-full"
           />
         </div>
       </div>

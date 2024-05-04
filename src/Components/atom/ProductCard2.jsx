@@ -19,10 +19,10 @@ const ProductCard2 = ({ id, name, minimumBid, imageUrl, remainingTime }) => {
           <RemainingTime milliseconds={remainingTime} size={21} />
         </div>
         <div className="p-5">
-          <div className="max-h-48 min-h-40 overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm sm:max-h-52 sm:min-h-52">
+          <div className="grid place-items-center max-h-48 min-h-48 overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm sm:max-h-52 sm:min-h-52">
             <img
               src={imageUrl}
-              className="ease h-full w-full bg-no-repeat object-cover transition duration-500 hover:scale-125"
+              className="ease h-46 w-46 bg-no-repeat object-cover transition duration-500 hover:scale-125"
             />
           </div>
           <div className="m-0 flex flex-col justify-between gap-2">

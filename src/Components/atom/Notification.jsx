@@ -33,7 +33,6 @@ const Notification = () => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
-          onMouseEnter={handleClick}
         />
         <Menu
           id="basic-menu"

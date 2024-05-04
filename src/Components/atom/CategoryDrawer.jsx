@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Slider from '@mui/material/Slider';
 import axios from "../../config/axiosConfig";
 
 import { useState, useEffect } from "react";
@@ -47,12 +48,13 @@ export default function CategoryDrawer({ changeCategory }) {
         <hr className="my-5" />
         <div className="p-3">
           <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
-          <input
-            type="number"
-            className="w-full border border-gray-300 rounded-md p-2"
-            min={5000}
+          <Slider
+            defaultValue={5000}
+            getAriaValueText={(value) => `₦${value}`}
             step={5000}
+            min={5000}
             max={10000000}
+            color="secondary"
           />
         </div>
         

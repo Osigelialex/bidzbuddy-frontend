@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "../../config/axiosConfig";
 import CircularProgress from "@mui/material/CircularProgress";
+import Slider from '@mui/material/Slider';
 
-const AuctionSidebar = ({ changeCategory }) => {
+const AuctionSidebar = ({ changeCategory, changeMinimumBid }) => {
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ const AuctionSidebar = ({ changeCategory }) => {
   });
 
   return (
-    <div className="sm:col-span-3 border lg:flex hidden justify-start p-3">
+    <div className="sm:col-span-3 border lg:flex hidden justify-start p-3 max-h-fit">
       {loading ? (
         <div className="flex justify-center items-center h-96">
           <CircularProgress />
@@ -26,7 +27,13 @@ const AuctionSidebar = ({ changeCategory }) => {
       ) : (
         <div>
           <h1 className="text-xl font-bold font-saira">Categories</h1>
-          <ul className="mt-5">
+          <ul className="my-5">
+            <li
+              className="text-gray-500 hover:bg-purple-400 hover:text-white w-full px-3 py-3 cursor-pointer rounded-md"
+              onClick={() => changeCategory("all")}
+            >
+              All Products
+            </li>
             {categories.map((category) => (
               <li 
                 key={category.id}
@@ -37,17 +44,20 @@ const AuctionSidebar = ({ changeCategory }) => {
               </li>
             ))}
           </ul>
-          <hr className="my-5" />
           <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
-          <input 
-            type="number"
-            className="w-full border border-gray-300 rounded-md p-2"
-            min={5000}
+
+          <Slider
+            defaultValue={10000000}
+            getAriaValueText={(value) => `₦${value}`}
             step={5000}
+            min={500000}
             max={10000000}
+            onChange={(e) => setTimeout(changeMinimumBid(e.target.value), 2000)}
+            color="secondary"
+            valueLabelDisplay="on"
           />
-          <hr className="my-5" />
-          <h1 className="text-xl mb-5 font-bold font-saira">Condition</h1>
+          <p className="text-gray-500">5,000 - 10,000,000</p>
+          <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
           <select className="w-full border border-gray-300 rounded-md p-2">
             <option value="new">New</option>
             <option value="used">Used</option>

@@ -9,7 +9,8 @@ import CategoryDrawer from "../atom/CategoryDrawer";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("all");
+  const [minimumBid, setMinimumBid] = useState(500000);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,10 @@ const Products = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
+
+  const changeMinimumBid = (newMinimum) => {
+    setMinimumBid(newMinimum);
+  }
 
   const changeCategory = (category) => {
     setCategory(category);
@@ -61,25 +66,30 @@ const Products = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(category, minimumBid);
+      let response;
+
       try {
-        const response = await axios.get(
-          `/api/v1/products?categoryId=${category}`,
-        );
+        if (category === "all") {
+          response = await axios.get(`/api/v1/products?minimumBid=${minimumBid}`);
+        } else if (category !== "all") {
+          response = await axios.get(`/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}`);
+        } else {
+          response = await axios.get('/api/v1/products');
+        }
         setProducts(response.data);
       } catch (error) {
-        console.error(error.response.data);
+        console.error(error);
       }
     };
 
-    if (category) {
-      fetchData();
-    }
-  }, [category]);
+    fetchData();
+  }, [minimumBid, category]);
 
   return (
     <section className="px-3 py-8 sm:px-10 sm:py-12 grid sm:grid-cols-12 gap-3">
-      <CategoryDrawer changeCategory={changeCategory} />
-      <AuctionSidebar changeCategory={changeCategory} />
+      <CategoryDrawer changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} />
+      <AuctionSidebar changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} />
       <div className="col-span-9">
         <div className="flex sm:justify-between gap-5 align-middle mb-10">
           <form

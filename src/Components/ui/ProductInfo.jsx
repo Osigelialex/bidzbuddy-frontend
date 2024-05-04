@@ -68,7 +68,7 @@ const ProductInfo = ({
   );
 
   return (
-    <div className="mb-20 mt-28 grid gap-5 px-5 align-middle md:grid-cols-2 md:gap-8">
+    <div className="mb-20 mt-28 grid gap-5 px-5 align-middle md:grid-cols-2 md:gap-1">
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={open}
@@ -81,14 +81,11 @@ const ProductInfo = ({
         </Alert>
       </Snackbar>
 
-      <div className="max-h-96 w-full rounded-bl-md rounded-br-md">
-        <div className="grid min-h-14 place-items-center bg-gray-800 text-white">
+      <div className="max-h-48 grid place-items-center">
+        <div className="bg-gray-800 min-h-14 text-white w-3/4 grid place-items-center">
           <RemainingTime milliseconds={remainingTime} size={30} />
         </div>
-        <img
-          src={image}
-          className="h-3/4 w-full rounded-bl-md rounded-br-md bg-no-repeat object-cover"
-        />
+        <img src={image} className="w-3/4 h-96 object-fit" />
       </div>
 
       <div>
