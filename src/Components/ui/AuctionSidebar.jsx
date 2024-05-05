@@ -3,7 +3,7 @@ import axios from "../../config/axiosConfig";
 import CircularProgress from "@mui/material/CircularProgress";
 import Slider from '@mui/material/Slider';
 
-const AuctionSidebar = ({ changeCategory, changeMinimumBid }) => {
+const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) => {
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,9 +58,12 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid }) => {
           />
           <p className="text-gray-500">5,000 - 10,000,000</p>
           <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
-          <select className="w-full border border-gray-300 rounded-md p-2">
-            <option value="new">New</option>
-            <option value="used">Used</option>
+          <select 
+            className="w-full border border-gray-300 rounded-md p-2"
+            onChange={(e) => changeCondition(e.target.value)}
+          >
+            <option value="NEW">New</option>
+            <option value="USED">Used</option>
           </select>
         </div>
       )}

@@ -11,6 +11,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [minimumBid, setMinimumBid] = useState(500000);
+  const [condition, setCondition] = useState("NEW");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,10 @@ const Products = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
+
+  const changeCondition = (newCondition) => {
+    setCondition(newCondition);
+  }
 
   const changeMinimumBid = (newMinimum) => {
     setMinimumBid(newMinimum);
@@ -66,16 +71,15 @@ const Products = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(category, minimumBid);
       let response;
+      console.log(condition, minimumBid, category);
 
       try {
         if (category === "all") {
-          response = await axios.get(`/api/v1/products?minimumBid=${minimumBid}`);
-        } else if (category !== "all") {
-          response = await axios.get(`/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}`);
+          response = await axios.get(`/api/v1/products?minimumBid=${minimumBid}&condition=${condition}`);
+          console.log(response);
         } else {
-          response = await axios.get('/api/v1/products');
+          response = await axios.get(`/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}&condition=${condition}`);
         }
         setProducts(response.data);
       } catch (error) {
@@ -84,12 +88,12 @@ const Products = () => {
     };
 
     fetchData();
-  }, [minimumBid, category]);
+  }, [minimumBid, category, condition]);
 
   return (
     <section className="px-3 py-8 sm:px-10 sm:py-12 grid sm:grid-cols-12 gap-3">
-      <CategoryDrawer changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} />
-      <AuctionSidebar changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} />
+      <CategoryDrawer changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} changeCondition={changeCondition} />
+      <AuctionSidebar changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} changeCondition={changeCondition} />
       <div className="col-span-9">
         <div className="flex sm:justify-between gap-5 align-middle mb-10">
           <form

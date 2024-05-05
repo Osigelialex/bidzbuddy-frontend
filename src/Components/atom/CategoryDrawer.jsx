@@ -10,7 +10,7 @@ import axios from "../../config/axiosConfig";
 
 import { useState, useEffect } from "react";
 
-export default function CategoryDrawer({ changeCategory }) {
+export default function CategoryDrawer({ changeCategory, changeMinimumBid, changeCondition }) {
   const [open, setOpen] = useState(false);
 
   const [categories, setCategories] = useState([]);
@@ -45,26 +45,26 @@ export default function CategoryDrawer({ changeCategory }) {
             </ListItemButton>
           </ListItem>
         ))}
-        <hr className="my-5" />
-        <div className="p-3">
+        <div className="p-4">
           <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
           <Slider
-            defaultValue={5000}
+            defaultValue={10000000}
             getAriaValueText={(value) => `₦${value}`}
             step={5000}
-            min={5000}
+            min={500000}
             max={10000000}
+            onChange={(e) => setTimeout(changeMinimumBid(e.target.value), 2000)}
             color="secondary"
+            valueLabelDisplay="on"
           />
-        </div>
-        
-        <hr className="my-5" />
-
-        <div className="p-3">
-          <h1 className="text-xl mb-5 font-bold font-saira">Condition</h1>
-          <select className="w-full border border-gray-300 rounded-md p-2">
-            <option value="new">New</option>
-            <option value="used">Used</option>
+          <p className="text-gray-500">5,000 - 10,000,000</p>
+          <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
+          <select
+            className="w-full border border-gray-300 rounded-md p-2"
+            onChange={(e) => changeCondition(e.target.value)}
+          >
+            <option value="NEW">New</option>
+            <option value="USED">Used</option>
           </select>
         </div>
       </List>

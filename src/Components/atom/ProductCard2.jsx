@@ -10,7 +10,7 @@ const ProductCard2 = ({ id, name, minimumBid, imageUrl, remainingTime }) => {
         data-aos="fade-in"
         data-aos-offset="10"
         data-aos-easing="ease-in-sine"
-        data-aos-duration="1000"
+        data-aos-duration="500"
         data-aos-once="true"
         className="container mx-auto flex max-h-fit cursor-pointer flex-col gap-3 border bg-white shadow-sm"
         onClick={() => navigate(`/products/${id}`)}
