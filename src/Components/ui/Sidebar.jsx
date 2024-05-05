@@ -30,6 +30,11 @@ const Sidebar = () => {
         {auth.user.role === "SELLER" && (
           <div
             className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
+            style={{ backgroundColor: active === "myproducts" ? "rgb(147, 51, 234)" : "", color: active === "myproducts" ? "white" : ""}}
+            onClick={() => {
+              setActive("myproducts")
+              navigate("/account/my-products")
+            }}
           >
             <FaRegFaceLaughWink className="mr-2 inline-block" />
             <p>My Products</p>

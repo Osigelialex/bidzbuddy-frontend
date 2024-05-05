@@ -48,7 +48,7 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
         <Divider />
-        <Link to="/profile">
+        <Link to="/account/overview">
           <ListItem key="Profile" disablePadding>
             <ListItemButton>
               <ListItemText primary="Profile" />

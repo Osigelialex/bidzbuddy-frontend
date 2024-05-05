@@ -47,10 +47,10 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
           <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
 
           <Slider
-            defaultValue={10000000}
+            defaultValue={5000}
             getAriaValueText={(value) => `₦${value}`}
             step={5000}
-            min={500000}
+            min={5000}
             max={10000000}
             onChange={(e) => setTimeout(changeMinimumBid(e.target.value), 2000)}
             color="secondary"

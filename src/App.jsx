@@ -11,6 +11,7 @@ import NotificationPage from "./Pages/NotificationPage";
 import Layout from "./Components/ui/Layout";
 import MyBids from "./Components/ui/MyBids";
 import Overview from "./Components/ui/Overview";
+import MyProducts from "./Components/ui/MyProducts";
 import { useEffect } from "react";
 import {
   RouterProvider,
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
         <Route path="account/*" element={<Layout />}>
           <Route path="overview" element={<Overview />} />
           <Route path="my-bids" element={<MyBids />} />
+          <Route path="my-products" element={<MyProducts />} />
         </Route>
       </Route>
     </Route>
