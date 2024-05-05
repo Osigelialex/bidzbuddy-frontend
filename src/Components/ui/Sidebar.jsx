@@ -39,7 +39,10 @@ const Sidebar = () => {
           <div 
             className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
             style={{ backgroundColor: active === "mybids" ? "rgb(147, 51, 234)" : "", color: active === "mybids" ? "white" : ""}}
-            onClick={() => {setActive("mybids")}}
+            onClick={() => {
+              setActive("mybids")
+              navigate("/account/my-bids")
+            }}
           >
             <RiAuctionLine className="mr-2 inline-block" />
             <p>My Bids</p>

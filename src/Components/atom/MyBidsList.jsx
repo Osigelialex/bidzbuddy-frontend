@@ -19,15 +19,15 @@ export default function MyBidsTable({ mybids }) {
   }));
 
   return (
-    <TableContainer component={Paper} className="min-h-full">
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+    <TableContainer component={Paper} elevation={0} className="min-h-full">
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a bidding list">
         <TableHead>
           <TableRow>
             <StyledTableCell>
-              <span className="text-lg font-saira">Product Image</span>
+              <span className="text-lg font-saira">Product Name</span>
             </StyledTableCell>
             <StyledTableCell>
-              <span className="text-lg font-saira">Product Name</span>
+              <span className="text-lg font-saira">Product Image</span>
             </StyledTableCell>
             <StyledTableCell>
               <span className="text-lg font-saira">Amount (NGN)</span>
@@ -47,10 +47,10 @@ export default function MyBidsTable({ mybids }) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <StyledTableCell component="th" scope="row">
-                <img src={bid.productImageUrl} className="w-25 h-20 rounded-md" />
+                <span className="text-lg text-gray-500">{bid.productName}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <span className="text-lg text-gray-500">{bid.productName}</span>
+                <img src={bid.productImageUrl} className="w-25 h-20 rounded-md" />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 <span className="text-lg text-gray-500">{bid.bidAmount}</span>
@@ -59,7 +59,7 @@ export default function MyBidsTable({ mybids }) {
                 {bid.winningBid ? (
                   <span className="text-lg text-green-400">Winning</span>
                 ) : (
-                  <span className="text-lg text-red-400">Outbid</span>
+                  <span className="text-lg text-green-400">Placed</span>
                 )}
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">

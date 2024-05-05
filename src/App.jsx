@@ -9,6 +9,7 @@ import AuctionDetail from "./Pages/AuctionDetail";
 import PrivateRoute from "./Auth/PrivateRoute";
 import NotificationPage from "./Pages/NotificationPage";
 import Layout from "./Components/ui/Layout";
+import MyBids from "./Components/ui/MyBids";
 import Overview from "./Components/ui/Overview";
 import { useEffect } from "react";
 import {
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       <Route element={<PrivateRoute />}>
         <Route path="account/*" element={<Layout />}>
           <Route path="overview" element={<Overview />} />
+          <Route path="my-bids" element={<MyBids />} />
         </Route>
       </Route>
     </Route>

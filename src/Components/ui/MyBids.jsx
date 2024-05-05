@@ -12,6 +12,7 @@ const MyBids = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/v1/bids");
+        console.log(response.data);
         setUserBids(response.data);
         setLoading(false);
       } catch (error) {
