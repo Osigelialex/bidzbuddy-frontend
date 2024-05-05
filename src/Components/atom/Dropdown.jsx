@@ -47,9 +47,7 @@ export default function BasicMenu({ title, role }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        {auth.user.role === "SELLER" && (
-          <MenuItem onClick={() => navigate("/profile")}>Dashboard</MenuItem>
-        )}
+        <MenuItem onClick={() => navigate("/account/overview")}>Dashboard</MenuItem>
         <MenuItem onClick={logout} style={{ color: "purple" }}>
           Logout
         </MenuItem>

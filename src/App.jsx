@@ -3,13 +3,13 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Cookies from "js-cookie";
-import axios from "./config/axiosConfig";
 import AuthProvider from "./hooks/AuthProvider";
 import Auctions from "./Pages/Auctions";
 import AuctionDetail from "./Pages/AuctionDetail";
-import Profile from "./Pages/Profile";
+import PrivateRoute from "./Auth/PrivateRoute";
 import NotificationPage from "./Pages/NotificationPage";
+import Layout from "./Components/ui/Layout";
+import Overview from "./Components/ui/Overview";
 import { useEffect } from "react";
 import {
   RouterProvider,
@@ -26,8 +26,14 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} />
       <Route path="products" element={<Auctions />} />
       <Route path="products/:id" element={<AuctionDetail />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="notifications" element={<NotificationPage />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="notifications" element={<NotificationPage />} />
+      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route path="account/*" element={<Layout />}>
+          <Route path="overview" element={<Overview />} />
+        </Route>
+      </Route>
     </Route>
   )
 )
@@ -37,13 +43,6 @@ function App() {
     AOS.init();
     AOS.refresh();
   }, []);
-
-  useEffect(() => {
-    const accessToken = Cookies.get("accessToken") || null;
-    if (accessToken) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    }
-  });
 
   return (
     <div className="font-inter">

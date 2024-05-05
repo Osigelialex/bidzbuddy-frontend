@@ -1,18 +1,17 @@
-import { useAuth } from "../../hooks/AuthProvider";
 import { RiAuctionLine } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
 import { FaRegFaceLaughWink } from "react-icons/fa6";
 import { CiSettings } from "react-icons/ci";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthProvider";
 
-const Sidebar = ({ setSelectedSection }) => {
+const Sidebar = () => {
   const auth = useAuth();
   const [active, setActive] = useState("overview");
 
-  if (!auth.user) {
-    return null;
-  }
+  const navigate = useNavigate();
 
   return (
     <>
@@ -21,8 +20,8 @@ const Sidebar = ({ setSelectedSection }) => {
           className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
           style={{ backgroundColor: active === "overview" ? "rgb(147, 51, 234)" : "", color: active === "overview" ? "white" : ""}}
           onClick={() => {
-            setSelectedSection("overview")
             setActive("overview")
+            navigate("/account/overview")
           }}
         >
           <RiAccountPinBoxLine size={20} className="mr-2 inline-block" />
@@ -40,10 +39,7 @@ const Sidebar = ({ setSelectedSection }) => {
           <div 
             className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
             style={{ backgroundColor: active === "mybids" ? "rgb(147, 51, 234)" : "", color: active === "mybids" ? "white" : ""}}
-            onClick={() => {
-              setSelectedSection("mybids")
-              setActive("mybids")
-            }}
+            onClick={() => {setActive("mybids")}}
           >
             <RiAuctionLine className="mr-2 inline-block" />
             <p>My Bids</p>

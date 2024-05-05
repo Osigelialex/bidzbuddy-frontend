@@ -1,6 +1,5 @@
 import Banner from "../Components/ui/Banner";
 import { useAuth } from "../hooks/AuthProvider";
-import { CiLock } from "react-icons/ci";
 import getTimeDifference from "../utils/getTimeDifference";
 import { TbNotification } from "react-icons/tb";
 import Navbar from "../Components/ui/Navbar";
@@ -13,7 +12,6 @@ const NotificationPage = () => {
     <>
       <Navbar />
       <Banner title="Notifications" />
-      {auth.user ? (
         <div className="p-10 mx-auto sm:w-5/6">
         <h1 className="font-bold text-lg mb-6">Notifications</h1>
         {auth.user.notifications.toReversed().map((notification, index) => (
@@ -26,13 +24,6 @@ const NotificationPage = () => {
           </div>
         ))}
       </div>
-      ) : (
-        <div className="grid place-items-center gap-3 mx-auto py-10">
-          <CiLock size={70} />
-          <p className="text-lg">Please login to view your notifications</p>
-        </div>
-      )}
-      
     </>
   );
 }
