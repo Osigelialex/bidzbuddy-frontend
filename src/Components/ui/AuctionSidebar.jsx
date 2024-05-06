@@ -30,7 +30,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
           <ul className="my-5">
             <li
               className="text-gray-500 hover:bg-purple-400 hover:text-white w-full px-3 py-3 cursor-pointer rounded-md"
-              onClick={() => changeCategory("all")}
+              onClick={() => changeCategory("all", "All")}
             >
               All Products
             </li>
@@ -38,7 +38,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
               <li 
                 key={category.id}
                 className="text-gray-500 hover:bg-purple-400 hover:text-white w-full px-3 py-3 cursor-pointer rounded-md"
-                onClick={() => changeCategory(category.id)}
+                onClick={() => changeCategory(category.id, category.name)}
               >
                 {category.name}
               </li>
@@ -56,7 +56,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
             color="secondary"
             valueLabelDisplay="on"
           />
-          <p className="text-gray-500">5,000 - 10,000,000</p>
+          <p className="text-gray-500 text-sm">5,000 - 10,000,000</p>
           <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
           <select 
             className="w-full border border-gray-300 rounded-md p-2"

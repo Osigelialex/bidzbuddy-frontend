@@ -31,11 +31,18 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
+        <ListItem
+          onClick={() => {
+            changeCategory("all", "All");
+            toggleDrawer(false);
+          }}
+          disablePadding
+        />
         {categories.map((category) => (
           <ListItem
             key={category.id}
             onClick={() => {
-              changeCategory(category.id);
+              changeCategory(category.id, category.name);
               toggleDrawer(false);
             }}
             disablePadding

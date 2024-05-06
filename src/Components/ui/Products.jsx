@@ -10,6 +10,7 @@ import CategoryDrawer from "../atom/CategoryDrawer";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
+  const [categoryName, setCategoryName] = useState("All");
   const [minimumBid, setMinimumBid] = useState(500000);
   const [condition, setCondition] = useState("NEW");
   const [page, setPage] = useState(1);
@@ -29,8 +30,9 @@ const Products = () => {
     setMinimumBid(newMinimum);
   }
 
-  const changeCategory = (category) => {
+  const changeCategory = (category, name) => {
     setCategory(category);
+    setCategoryName(name);
   }
 
   useEffect(() => {
@@ -109,6 +111,11 @@ const Products = () => {
             />
           </form>
         </div>
+        <div>
+          <h1 className="text-gray-800 mt-3 mb-8">
+            {categoryName} Products
+          </h1>
+        </div>
         {!loading && products.length === 0 ? (
           <div className="min-h-90 grid place-items-center text-gray-600">
             <img src="/not_found.jpeg" alt="not found" className="w-80" />
@@ -133,6 +140,7 @@ const Products = () => {
                   minimumBid={product.minimumBid}
                   imageUrl={product.productImageUrl}
                   remainingTime={product.remainingTime}
+                  condition={product.condition}
                 />
               ))}
           </div>

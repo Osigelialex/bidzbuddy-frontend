@@ -66,6 +66,7 @@ const LiveAuction = () => {
                 minimumBid={product.minimumBid}
                 imageUrl={product.productImageUrl}
                 remainingTime={product.remainingTime}
+                condition={product.condition}
               />
             ))}
       </div>
