@@ -2,6 +2,7 @@ import { useContext, createContext } from "react";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "../config/axiosConfig";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
@@ -12,7 +13,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       const accessToken = Cookies.get("accessToken");
-      if (accessToken) {
+      const decodedToken = jwtDecode(accessToken);
+      if (decodedToken.exp < Date.now()) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
         try {

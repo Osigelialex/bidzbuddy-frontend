@@ -30,8 +30,8 @@ const BiddingList = ({ productId }) => {
   if (biddingList.length === 0) {
     return (
       <div className="grid place-items-center text-gray-500 mb-3">
-        <RiAuctionLine size={100} />
-        <h1 className="text-4xl font-semibold">Be first to bid!</h1>
+        <RiAuctionLine size={50} />
+        <h1 className="text-2xl font-semibold">Be first to bid!</h1>
       </div>
     )
   }

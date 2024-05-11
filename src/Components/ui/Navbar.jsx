@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between bg-white px-10 py-2 align-middle shadow-sm sm:px-12">
+      <nav className="sticky top-0 z-50 flex items-center justify-between bg-white px-10 py-2 align-middle sm:px-12">
         <Link to="/">
           <div className="flex cursor-pointer gap-2 text-lg font-bold text-purple-500">
             <RiAuctionFill size={30} />

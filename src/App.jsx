@@ -12,6 +12,7 @@ import Layout from "./Components/ui/Layout";
 import MyBids from "./Components/ui/MyBids";
 import Overview from "./Components/ui/Overview";
 import MyProducts from "./Components/ui/MyProducts";
+import NewProduct from "./Pages/NewProduct";
 import { useEffect } from "react";
 import {
   RouterProvider,
@@ -28,6 +29,9 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} />
       <Route path="products" element={<Auctions />} />
       <Route path="products/:id" element={<AuctionDetail />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="new-product" element={<NewProduct />} />
+      </Route>
       <Route element={<PrivateRoute />}>
         <Route path="notifications" element={<NotificationPage />} />
       </Route>

@@ -4,7 +4,7 @@ const Clients = () => {
   return (
     <section className="py-10">
       <div className="px-5 text-justify sm:text-center">
-        <h1 className="text-xl font-bold font-saira sm:text-4xl">What Clients Say</h1>
+        <h1 className="text-xl font-bold sm:text-3xl">Our Happy Clients</h1>
       </div>
 
       <div className="grid gap-4 p-3 sm:mx-16 sm:grid-cols-3">

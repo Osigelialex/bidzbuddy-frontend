@@ -1,29 +1,33 @@
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useAuth } from "../../hooks/AuthProvider";
-import { useState } from "react";
-import Menu from "@mui/material/Menu";
-import { Link } from "react-router-dom";
-import MenuItem from "@mui/material/MenuItem";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../config/axiosConfig";
 
 const Notification = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+
+  const [count, setCount] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getNotificationCount = async () => {
+      const response = await axios.get('/api/v1/notifications/count');
+      setCount(response.data);
+    }
+
+    getNotificationCount();
+  }, []);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    navigate('/notifications');
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const auth = useAuth();
 
   return (
     <>
       <Badge
-        badgeContent={auth.user ? auth.user.notifications.length : 0}
+        badgeContent={count === 0 ? undefined : count}
         color="secondary"
         className="cursor-pointer"
       >
@@ -34,23 +38,6 @@ const Notification = () => {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         />
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          {auth.user.notifications.toReversed().map((notification) => (
-            <Link to="/notifications" key={notification.id}>
-              <MenuItem
-                style={{ fontWeight: "bold" }}
-              >{`${notification.message}`}</MenuItem>
-            </Link>
-          ))}
-        </Menu>
       </Badge>
     </>
   );

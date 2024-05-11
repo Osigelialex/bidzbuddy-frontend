@@ -11,7 +11,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [categoryName, setCategoryName] = useState("All");
-  const [minimumBid, setMinimumBid] = useState(500000);
+  const [minimumBid, setMinimumBid] = useState(5000);
   const [condition, setCondition] = useState("NEW");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");

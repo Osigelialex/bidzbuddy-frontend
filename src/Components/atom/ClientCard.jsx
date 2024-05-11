@@ -1,4 +1,3 @@
-import { FaQuoteRight } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
 
 const ClientCard = ({ text, name, position }) => {
@@ -21,9 +20,6 @@ const ClientCard = ({ text, name, position }) => {
           <div className="flex flex-col justify-start">
             <p className="font-bold">{name}</p>
             <p>{position}</p>
-          </div>
-          <div className="text-purple-500">
-            <FaQuoteRight size={30} />
           </div>
         </div>
       </div>

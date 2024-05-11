@@ -20,7 +20,7 @@ const ProductCard2 = ({ id, name, minimumBid, imageUrl, remainingTime, condition
         </div>
         <div className="p-5">
           <div 
-            className={"absolute right-0 top-20 z-30 p-1 text-white text-sm" + (condition.toLowerCase() === "new" ? " bg-green-500" : " bg-yellow-500")}
+            className={"absolute right-0 top-20 z-30 p-1 text-white text-sm" + (condition.toLowerCase() === "new" ? " bg-purple-500" : " bg-purple-400")}
           >
             {condition.toLowerCase() === "new" ? "New" : "Used"}
           </div>

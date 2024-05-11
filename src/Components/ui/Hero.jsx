@@ -1,14 +1,14 @@
 const Hero = () => {
   return (
     <>
-      <div className="justify-between text-center bg-purple-100 lg:text-left gap-10 px-5 pb-6 pt-16 sm:px-16 sm:pb-16 sm:pt-14 lg:grid lg:grid-cols-2">
+      <div className="justify-between text-center lg:text-left gap-10 px-5 pb-6 pt-16 sm:px-16 sm:pb-16 sm:pt-14 lg:grid lg:grid-cols-2">
         <div className="sm:p-5 p-2">
           <p
             data-aos="fade-down"
             data-aos-easing="ease-in-sine"
             data-aos-duration="900"
             data-aos-once="true"
-            className="mb-5 sm:text-sm text-xl font-bold text-purple-600"
+            className="mb-5 sm:text-md text-xl font-bold text-purple-600"
           >
             Welcome to BidzBuddy
           </p>
@@ -41,12 +41,11 @@ const Hero = () => {
             START EXPLORING
           </button>
         </div>
-        <div className="relative hidden min-h-full lg:block rounded-full">
+        
           <img
             src="/bidding-image.avif"
-            className="relative h-full w-full object-cover rounded-full"
+            className="relative w-[30rem] h-[30rem] sm:block hidden object-cover rounded-full"
           />
-        </div>
       </div>
     </>
   );

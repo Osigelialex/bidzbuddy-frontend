@@ -8,6 +8,7 @@ import axios from "../../config/axiosConfig";
 import { useState } from "react";
 import { useAuth } from "../../hooks/AuthProvider";
 import { CiLock } from "react-icons/ci";
+import ProductDetailCard from "../atom/ProductDetailCard";
 
 const ProductInfo = ({
   id,
@@ -68,7 +69,7 @@ const ProductInfo = ({
   );
 
   return (
-    <div className="sm:mb-32 mb-10 mt-28 grid gap-10 px-5 align-middle sm:grid-cols-1 md:grid-cols-2 md:gap-1">
+    <div className="mb-10 mt-28 flex flex-wrap justify-center gap-20 p-3 text-gray-950 sm:mx-24 sm:mb-32 sm:flex-nowrap sm:gap-8">
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={open}
@@ -81,19 +82,17 @@ const ProductInfo = ({
         </Alert>
       </Snackbar>
 
-      <div className="max-h-48 grid place-items-center">
-        <div className="bg-gray-800 min-h-14 text-white w-full sm:grid sm:grid-cols-1 sm:gap-2">  <RemainingTime milliseconds={remainingTime} size={30} />
-          <img src={image} className="w-full h-48 object-fit" />  </div>
-      </div>
+      <ProductDetailCard image={image} title={name} remainingTime={remainingTime} />
 
       <div>
-        <h1 className="text-2xl font-extrabold sm:text-4xl">{name}</h1>
-        <p className="text-md my-5 leading-7 text-gray-600">{description}</p>
-        <p className="font-medium sm:text-3xl">
-          Current Bid: <span className="font-extrabold">₦ {currentBid}</span>
+        <h1 className="text-3xl font-bold">{name}</h1>
+        <p className="text-md mt-2 leading-7">{description}</p>
+        <p className="mt-7 sm:text-xl">
+          Bidding Price:{" "}
+          <span className="text-2xl font-medium">₦ {currentBid}</span>
         </p>
 
-        <div className="mt-7 w-full rounded-md border p-5 shadow-md">
+        <div className="mt-7 w-full rounded-md border p-5">
           {closed ? (
             <div className="flex gap-2">
               <CiLock size={30} />
@@ -102,7 +101,7 @@ const ProductInfo = ({
           ) : (
             <>
               <h1 className="text-lg font-bold">Place your bid</h1>
-              <p className="text-md text-gray-600">
+              <p className="sm:text-md text-sm text-gray-600">
                 Bid Amount must be greater than current Bid by a 1000
               </p>
               <form
@@ -122,8 +121,8 @@ const ProductInfo = ({
                   onChange={(e) => setAmount(e.target.value)}
                   required
                 />
-                <button className="w-28 rounded-md bg-purple-600 p-3 text-white">
-                  Bid
+                <button className="w-40 rounded-md bg-purple-600 p-3 text-white">
+                  Place Bid
                 </button>
               </form>
             </>
