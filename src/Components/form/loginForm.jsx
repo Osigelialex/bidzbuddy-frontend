@@ -33,6 +33,7 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       await auth.loginAction(data);
+      console.log(auth.user);
       navigate("/");
     } catch (error) {
       if (error.response) {

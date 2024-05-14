@@ -1,4 +1,3 @@
-import RemainingTime from "../atom/RemainingTime";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -93,10 +92,12 @@ const ProductInfo = ({
         </p>
 
         <div className="mt-7 w-full rounded-md border p-5">
-          {closed ? (
+          {closed || auth.user.role == "SELLER" ? (
             <div className="flex gap-2">
-              <CiLock size={30} />
-              <p className="text-red-500">Bidding is closed for this product</p>
+              <CiLock size={50} />
+              <p className="text-red-500">
+                {closed ? "Auction Closed for this product" : "Looks like you're signed in as a seller. Bidding is for buyers only, but you can check out your own listings!"}
+              </p>
             </div>
           ) : (
             <>
