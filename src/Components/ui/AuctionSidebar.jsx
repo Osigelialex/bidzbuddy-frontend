@@ -58,10 +58,11 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
           />
           <p className="text-gray-500 text-sm">5,000 - 10,000,000</p>
           <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
-          <select 
+          <select
             className="w-full border border-gray-300 rounded-md p-2"
             onChange={(e) => changeCondition(e.target.value)}
           >
+            <option value="" defaultValue={true}>Select Condition</option>
             <option value="NEW">New</option>
             <option value="USED">Used</option>
           </select>

@@ -21,7 +21,9 @@ const AuthProvider = ({ children }) => {
           const response = await axios.get("/api/v1/auth/get-user");
           setUser(response.data);
         } catch (error) {
+          console.log("EROROROROR");
           if (error.response && error.response.status === 401) {
+            console.log('Not allowed');
             logout();
           } else {
             console.error("Error fetching user data:", error);

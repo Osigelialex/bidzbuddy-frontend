@@ -68,7 +68,7 @@ const BiddingList = ({ productId }) => {
                 {idx + 1}
               </TableCell>
               <TableCell align="center" sx={{ fontSize: 16 }}>{row.bidderUsername}</TableCell>
-              <TableCell align="center" sx={{ fontSize: 16 }}>{row.bidAmount}</TableCell>
+              <TableCell align="center" sx={{ fontSize: 16 }}>₦ {row.bidAmount}</TableCell>
               <TableCell align="center" sx={{ fontSize: 16 }}>
                 {getTimeDifference(row.timestamp)}
               </TableCell>

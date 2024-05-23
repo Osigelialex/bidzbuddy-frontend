@@ -46,7 +46,7 @@ const NotificationPage = () => {
           </div>
         ) : (
           <>
-            {notifications.toReversed().map((notification, index) => (
+            {notifications.map((notification, index) => (
               <div
                 key={index}
                 className="mb-3 flex justify-between rounded-lg bg-gray-100 p-4"

@@ -20,8 +20,7 @@ const ProductInfo = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const auth = useAuth();
 
@@ -29,17 +28,21 @@ const ProductInfo = ({
     e.preventDefault();
 
     if (!auth.user) {
+      setMessage({ type: "error", text: "Please login to place bid" });
       setOpen(true);
       return;
     }
 
     try {
       await axios.post(`/api/v1/bids/place/${id}`, { bidAmount: amount });
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 5000);
+      setMessage({ type: "success", text: "Bid Placed Successfully" });
+      setOpen(true);
     } catch (error) {
-      setError(true);
-      setTimeout(() => setError(false), 5000);
+      setMessage({
+        type: "error",
+        text: "Error placing bid, please try again",
+      });
+      setOpen(true);
     }
   };
 
@@ -76,62 +79,90 @@ const ProductInfo = ({
         action={action}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity="error" variant="filled">
-          Please login to place bid
+        <Alert onClose={handleClose} severity={message.type} variant="filled">
+          {message.text}
         </Alert>
       </Snackbar>
 
-      <ProductDetailCard image={image} title={name} remainingTime={remainingTime} />
+      <ProductDetailCard
+        image={image}
+        title={name}
+        remainingTime={remainingTime}
+      />
 
       <div>
         <h1 className="text-3xl font-bold">{name}</h1>
         <p className="text-md mt-2 leading-7">{description}</p>
         <p className="mt-7 sm:text-xl">
-          Bidding Price:{" "}
+          Current Bidding Price:{" "}
           <span className="text-2xl font-medium">₦ {currentBid}</span>
         </p>
 
         <div className="mt-7 w-full rounded-md border p-5">
-          {closed || auth.user.role == "SELLER" ? (
-            <div className="flex gap-2">
+          {closed ? (
+            <div className="flex gap-2 items-center align-middle">
               <CiLock size={50} />
-              <p className="text-red-500">
-                {closed ? "Auction Closed for this product" : "Looks like you're signed in as a seller. Bidding is for buyers only, but you can check out your own listings!"}
-              </p>
+              <p className="text-red-500">Auction Closed for this product</p>
             </div>
           ) : (
             <>
-              <h1 className="text-lg font-bold">Place your bid</h1>
-              <p className="sm:text-md text-sm text-gray-600">
-                Bid Amount must be greater than current Bid by a 1000
-              </p>
-              <form
-                className="mx-auto flex items-center gap-2 align-middle"
-                onSubmit={(e) => handleSubmit(e)}
-              >
-                <input
-                  type="number"
-                  min={currentBid + 1000 || 1000}
-                  step={1000}
-                  placeholder="Enter amount"
-                  className="my-2 w-full border p-3 outline-none"
-                  style={{
-                    success: success ? "border: 1px solid green" : "",
-                    error: error ? "border: 1px solid red" : "",
-                  }}
-                  onChange={(e) => setAmount(e.target.value)}
-                  required
-                />
-                <button className="w-40 rounded-md bg-purple-600 p-3 text-white">
-                  Place Bid
-                </button>
-              </form>
-            </>
-          )}
+              {/* Logged in as seller */}
+              {auth.user && auth.user.role === "SELLER" && (
+                <div className="flex gap-2 items-center align-middle">
+                  <CiLock size={50} />
+                  <p className="text-red-500">
+                    Looks like you're signed in as a seller. Bidding is for
+                    buyers only, but you can check out your own listings!
+                  </p>
+                </div>
+              )}
 
-          {success && <p className="text-green-500">Bid Placed Successfully</p>}
-          {error && (
-            <p className="text-red-500">Error placing bid, please try again</p>
+              {/* Logged in as Admin */}
+              {auth.user && auth.user.role === "ADMIN" && (
+                <div className="flex gap-2 items-center align-middle">
+                  <CiLock size={50} />
+                  <p className="text-red-500">
+                    Looks like you're signed in as an admin. Bidding is for
+                    buyers only
+                  </p>
+                </div>
+              )}
+
+              {/* Logged in as Buyer */}
+              {auth.user && auth.user.role === "BUYER" && (
+                <>
+                  <h1 className="text-lg font-bold">Place your bid</h1>
+                  <p className="sm:text-md text-sm text-gray-600">
+                    Bid Amount must be greater than current Bid by a 1000
+                  </p>
+                  <form
+                    className="mx-auto flex items-center gap-2 align-middle"
+                    onSubmit={(e) => handleSubmit(e)}
+                  >
+                    <input
+                      type="number"
+                      min={currentBid + 1000 || 1000}
+                      step={1000}
+                      placeholder="Enter amount"
+                      className="my-2 w-full border p-3 outline-none"
+                      style={{
+                        border:
+                          message.type === "success"
+                            ? "1px solid green"
+                            : message.type === "error"
+                              ? "1px solid red"
+                              : "",
+                      }}
+                      onChange={(e) => setAmount(e.target.value)}
+                      required
+                    />
+                    <button className="w-40 rounded-md bg-purple-600 p-3 text-white">
+                      Place Bid
+                    </button>
+                  </form>
+                </>
+              )}
+            </>
           )}
         </div>
       </div>

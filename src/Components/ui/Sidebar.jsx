@@ -53,28 +53,6 @@ const Sidebar = () => {
             <p>My Bids</p>
           </div>
         )}
-        {auth.user.role === "ADMIN" && (
-          <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
-            <CiUser className="mr-2 inline-block" />
-            <p>Users</p>
-          </div>
-        )}
-        {auth.user.role === "ADMIN" && (
-          <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
-            <FaRegFaceLaughWink size={20} className="mr-2 inline-block" />
-            <p>Products</p>
-          </div>
-        )}
-        {auth.user.role === "ADMIN" && (
-          <div className="bg-white p-3 text-left hover:bg-purple-600 hover:text-white">
-            Bids
-          </div>
-        )}
-        {auth.user.role === "ADMIN" && (
-          <div className="bg-white p-3 text-left hover:bg-purple-600 hover:text-white">
-            Categories
-          </div>
-        )}
         <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
           <CiSettings size={20} className="mr-2 inline-block" />
           <p>Settings</p>

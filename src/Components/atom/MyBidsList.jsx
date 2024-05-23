@@ -53,7 +53,7 @@ export default function MyBidsTable({ mybids }) {
                 <img src={bid.productImageUrl} className="w-12 h-12 rounded-full" />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <span className="text-lg text-gray-500">{bid.bidAmount}</span>
+                <span className="text-lg text-gray-500">₦ {bid.bidAmount}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 {bid.winningBid ? (

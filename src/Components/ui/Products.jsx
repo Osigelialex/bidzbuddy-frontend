@@ -12,7 +12,7 @@ const Products = () => {
   const [category, setCategory] = useState("all");
   const [categoryName, setCategoryName] = useState("All");
   const [minimumBid, setMinimumBid] = useState(5000);
-  const [condition, setCondition] = useState("NEW");
+  const [condition, setCondition] = useState("");
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -24,16 +24,16 @@ const Products = () => {
 
   const changeCondition = (newCondition) => {
     setCondition(newCondition);
-  }
+  };
 
   const changeMinimumBid = (newMinimum) => {
     setMinimumBid(newMinimum);
-  }
+  };
 
   const changeCategory = (category, name) => {
     setCategory(category);
     setCategoryName(name);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,14 +74,20 @@ const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       let response;
-      console.log(condition, minimumBid, category);
 
       try {
-        if (category === "all") {
+        if (category === "all" && condition === "") {
+          response = await axios.get(
+            `/api/v1/products?minimumBid=${minimumBid}`,
+          );
+        } else if (category === "all" && condition !== "") {
           response = await axios.get(`/api/v1/products?minimumBid=${minimumBid}&condition=${condition}`);
-          console.log(response);
+        } else if (condition === "" && category !== "all") {
+          response = await axios.get(`/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}`);
         } else {
-          response = await axios.get(`/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}&condition=${condition}`);
+          response = await axios.get(
+            `/api/v1/products?categoryId=${category}&minimumBid=${minimumBid}&condition=${condition}`,
+          );
         }
         setProducts(response.data);
       } catch (error) {
@@ -93,11 +99,19 @@ const Products = () => {
   }, [minimumBid, category, condition]);
 
   return (
-    <section className="px-3 py-8 sm:px-10 sm:py-12 grid sm:grid-cols-12 gap-3">
-      <CategoryDrawer changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} changeCondition={changeCondition} />
-      <AuctionSidebar changeCategory={changeCategory} changeMinimumBid={changeMinimumBid} changeCondition={changeCondition} />
+    <section className="grid gap-3 px-3 py-8 sm:grid-cols-12 sm:px-10 sm:py-12">
+      <CategoryDrawer
+        changeCategory={changeCategory}
+        changeMinimumBid={changeMinimumBid}
+        changeCondition={changeCondition}
+      />
+      <AuctionSidebar
+        changeCategory={changeCategory}
+        changeMinimumBid={changeMinimumBid}
+        changeCondition={changeCondition}
+      />
       <div className="col-span-9">
-        <div className="flex sm:justify-between gap-5 align-middle mb-10">
+        <div className="mb-10 flex gap-5 align-middle sm:justify-between">
           <form
             className="flex w-full gap-3 rounded-md border border-gray-300 p-2 sm:w-1/3"
             onSubmit={(e) => e.preventDefault()}
@@ -112,8 +126,8 @@ const Products = () => {
           </form>
         </div>
         <div>
-          <h1 className="text-gray-800 mt-3 mb-8">
-            {categoryName} Products
+          <h1 className="mb-8 mt-3 text-gray-800">
+            {categoryName} Products &gt;
           </h1>
         </div>
         {!loading && products.length === 0 ? (
@@ -124,25 +138,25 @@ const Products = () => {
           <div className="grid gap-3 sm:grid-cols-3">
             {loading
               ? skeletons.map((_, idx) => (
-                <Skeleton
-                  key={idx}
-                  variant="rectangular"
-                  width={300}
-                  height={300}
-                  className="container"
-                />
-              ))
+                  <Skeleton
+                    key={idx}
+                    variant="rectangular"
+                    width={300}
+                    height={300}
+                    className="container"
+                  />
+                ))
               : products.map((product, idx) => (
-                <ProductCard2
-                  key={idx}
-                  id={product.id}
-                  name={product.name}
-                  minimumBid={product.minimumBid}
-                  imageUrl={product.productImageUrl}
-                  remainingTime={product.remainingTime}
-                  condition={product.condition}
-                />
-              ))}
+                  <ProductCard2
+                    key={idx}
+                    id={product.id}
+                    name={product.name}
+                    minimumBid={product.minimumBid}
+                    imageUrl={product.productImageUrl}
+                    remainingTime={product.remainingTime}
+                    condition={product.condition}
+                  />
+                ))}
           </div>
         )}
 

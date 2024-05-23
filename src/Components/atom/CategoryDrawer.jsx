@@ -14,11 +14,13 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
   const [open, setOpen] = useState(false);
 
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/api/v1/categories");
       setCategories(response.data);
+      setLoading(false);
     }
 
     fetchData();
@@ -37,7 +39,11 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
             toggleDrawer(false);
           }}
           disablePadding
-        />
+        >
+          <ListItemButton>
+            <ListItemText primary="All Products" />
+          </ListItemButton>
+        </ListItem>
         {categories.map((category) => (
           <ListItem
             key={category.id}
@@ -55,10 +61,10 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
         <div className="p-4">
           <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
           <Slider
-            defaultValue={10000000}
+            defaultValue={5000}
             getAriaValueText={(value) => `₦${value}`}
             step={5000}
-            min={500000}
+            min={5000}
             max={10000000}
             onChange={(e) => setTimeout(changeMinimumBid(e.target.value), 2000)}
             color="secondary"

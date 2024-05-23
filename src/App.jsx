@@ -20,6 +20,9 @@ import {
   createRoutesFromElements,
   Route
 } from "react-router-dom";
+import AdminLayout from "./Components/ui/Admin/AdminLayout";
+import AdminRoute from "./Auth/AdminRoute";
+import Dashboard from "./Components/ui/Admin/Dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +43,11 @@ const router = createBrowserRouter(
           <Route path="overview" element={<Overview />} />
           <Route path="my-bids" element={<MyBids />} />
           <Route path="my-products" element={<MyProducts />} />
+        </Route>
+      </Route>
+      <Route element={<AdminRoute />}>
+        <Route path="admin/*" element={<AdminLayout /> }>
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Route>
     </Route>
