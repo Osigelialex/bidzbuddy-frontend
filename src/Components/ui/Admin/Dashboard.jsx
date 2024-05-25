@@ -7,76 +7,92 @@ import { TbCategory2 } from "react-icons/tb";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { BidChart } from "./BidChart";
 import { UserChart } from "./userChart";
+import RecentBids from "./RecentBids";
+import { formatCurrency } from "../../../utils/formatCurrency";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({});
   const [bids, setBids] = useState([]);
+  const [recentBids, setRecentBids] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const dashboardResponse = await axios.get("/api/v1/dashboard");
       const bidsResponse = await axios.get("/api/v1/bids/all");
-      const userResponse =  await axios.get("/api/v1/users");
+      const userResponse = await axios.get("/api/v1/users");
+      const recentBidsResponse = await axios.get("/api/v1/bids/recent");
 
       setDashboardData(dashboardResponse.data);
       setBids(bidsResponse.data);
       setUsers(userResponse.data);
-      console.log(users);
+      setRecentBids(recentBidsResponse.data)
     };
     fetchData();
   }, []);
 
   return (
-    <div className="p-5">
-      <div className="flex justify-between items-center align-middle">
-        <h1 className="font-semibold">Welcome to BidzBuddy Admin</h1>
-        <div className="text-md flex items-center align-middle gap-3 text-gray-500">
+    <div className="pb-10">
+      <div className="flex items-center justify-between bg-white p-5 mx-1 align-middle">
+        <h1 className="font-bold text-lg">BidzBuddy Admin</h1>
+        <div className="text-md flex items-center gap-3 align-middle text-gray-500">
           <CalendarMonthIcon />
           <p>{new Date().toJSON().slice(0, 10)}</p>
         </div>
       </div>
 
-      <div className="my-8 grid gap-3 sm:grid-cols-4">
-        <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
-          <div className="mb-3 flex items-center justify-center gap-3 align-middle">
-            <PiUsersThree size={20} className="text-blue-500" />
-            <h2 className="text-lg">Total Users</h2>
+      <div className="p-3">
+        <div className="my-8 grid gap-3 sm:grid-cols-4">
+          <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-3 align-middle">
+              <PiUsersThree size={20} className="text-blue-500" />
+              <h2>Total Users</h2>
+            </div>
+            <p className="text-lg font-semibold">{dashboardData.totalUsers}</p>
           </div>
-          <p className="text-2xl font-semibold">{dashboardData.totalUsers}</p>
-        </div>
-        <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
-          <div className="mb-3 flex items-center justify-center gap-3 align-middle">
-            <MdOutlineShoppingCart size={20} className="text-purple-500" />
-            <h2 className="text-lg">Total Products</h2>
+          <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-3 align-middle">
+              <MdOutlineShoppingCart size={20} className="text-purple-500" />
+              <h2>Total Products</h2>
+            </div>
+            <p className="text-lg font-semibold">
+              {dashboardData.totalProducts}
+            </p>
           </div>
-          <p className="text-2xl font-semibold">
-            {dashboardData.totalProducts}
-          </p>
-        </div>
-        <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
-          <div className="mb-3 flex items-center justify-center gap-3 align-middle">
-            <PiMoneyLight size={20} className="text-green-500" />
-            <h2 className="text-lg">Total Bids</h2>
+          <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-3 align-middle">
+              <PiMoneyLight size={20} className="text-green-500" />
+              <h2>Total Amount Bid</h2>
+            </div>
+            <p className="font-semibold">
+              ₦ {formatCurrency(dashboardData.totalBidAmount)}
+            </p>
           </div>
-          <p className="text-2xl font-semibold">
-            ₦ {dashboardData.totalBidAmount}
-          </p>
-        </div>
-        <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
-          <div className="mb-3 flex items-center justify-center gap-3 align-middle">
-            <TbCategory2 size={20} className="text-red-500" />
-            <h2 className="text-lg">Total Categories</h2>
+          <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-3 align-middle">
+              <TbCategory2 size={20} className="text-red-500" />
+              <h2>Total Categories</h2>
+            </div>
+            <p className="font-semibold">
+              {dashboardData.totalCategories}
+            </p>
           </div>
-          <p className="text-2xl font-semibold">
-            {dashboardData.totalCategories}
-          </p>
+          <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-3 align-middle">
+              <PiMoneyLight size={20} className="text-green-500" />
+              <h2>Average Bid Amount</h2>
+            </div>
+            <p className="font-semibold">
+              ₦ {formatCurrency(dashboardData.averageBidAmount)}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-12">
-        <BidChart chartData={bids} />
-        <UserChart chartData={users} />
+        <div className="grid gap-3 sm:grid-cols-12">
+          <BidChart chartData={bids} />
+          <UserChart chartData={users} />
+          <RecentBids recentBids={recentBids} />
+        </div>
       </div>
     </div>
   );

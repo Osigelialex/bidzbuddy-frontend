@@ -3,9 +3,9 @@ import AdminSidebar from "./AdminSidebar";
 
 const AdminLayout = () => {
   return (
-    <div className="grid sm:grid-cols-12 min-h-screen">
+    <div className="grid sm:grid-cols-12 min-h-screen h-screen">
       <AdminSidebar />
-      <main className="col-span-10 bg-[#fcfcfc]">
+      <main className="col-span-10 bg-slate-50 ml-48 min-w-full">
         <Outlet />
       </main>
     </div>

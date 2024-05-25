@@ -45,8 +45,8 @@ const AuctionDetail = () => {
       />
       {auth.user ? (<BiddingList productId={product.id} />) : (
         <div className="grid place-items-center gap-3 mx-auto text-gray-400">
-          <CiLock size={70} />
-          <p className="text-lg">Please login to view bidding list</p>
+          <img src="/login-first.gif" alt="login first" className="w-52" />
+          <p className="text-lg font-saira">Please login to view bidding list</p>
         </div>
       )}
     </div>

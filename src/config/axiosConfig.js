@@ -1,22 +1,32 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080",
-  timeout: 10000,
+  timeout: 10000
 });
 
-instance.interceptors.response.use(
-  response => {
-    return response;
-  },
-  error => {
-    if (error.response.status === 401) {
+instance.interceptors.request.use(config => {
+  const accessToken = Cookies.get("accessToken");
+  console.log(accessToken);
+  if (!accessToken) {
+    return config;
+  }
+
+  try {
+    const decodedJwt = jwtDecode(accessToken);
+    if (decodedJwt.exp * 1000 < Date.now()) {
       Cookies.remove("accessToken");
+      return config;
     }
 
-    return Promise.reject(error);
+    config.headers.Authorization = `Bearer ${accessToken}`;
+    return config;
+  } catch (error) {
+    Cookies.remove("accessToken");
   }
-);
+});
 
 export default instance;
+ 

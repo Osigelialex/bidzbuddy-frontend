@@ -23,6 +23,7 @@ import {
 import AdminLayout from "./Components/ui/Admin/AdminLayout";
 import AdminRoute from "./Auth/AdminRoute";
 import Dashboard from "./Components/ui/Admin/Dashboard";
+import ProductsList from "./Components/ui/Admin/ProductsList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route element={<AdminRoute />}>
         <Route path="admin/*" element={<AdminLayout /> }>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<ProductsList />} />
         </Route>
       </Route>
     </Route>

@@ -9,7 +9,7 @@ import { RiAuctionLine } from "react-icons/ri";
 
 const AdminSidebar = () => {
   return (
-    <div className="relative col-span-2 hidden flex-col justify-between border-r px-3 sm:flex">
+    <div className="h-screen fixed top-0 left-0 w-48 col-span-2 hidden flex-col justify-between shadow-sm px-3 sm:flex">
       <ul className="mt-3 flex flex-col gap-4 text-gray-500">
         <li className="mx-auto flex items-center align-middle w-full cursor-pointer gap-2 rounded-md border border-purple-500 bg-purple-200 p-3 text-lg font-bold text-purple-500">
           <RiAuctionFill size={20} />
@@ -46,7 +46,7 @@ const AdminSidebar = () => {
           </li>
         </Link>
       </ul>
-      <li className="text-md mb-3 flex cursor-pointer items-center gap-2 border-t-2 px-1 py-1 align-middle font-medium">
+      <li className="text-md mb-3 flex cursor-pointer items-center gap-2 border-t px-1 py-1 align-middle font-medium">
         <CiLogout size={18} />
         <Link to="/">Back to Site</Link>
       </li>

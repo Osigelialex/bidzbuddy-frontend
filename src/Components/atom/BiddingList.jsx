@@ -5,9 +5,8 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { RiAuctionLine } from "react-icons/ri";
 import getTimeDifference from "../../utils/getTimeDifference";
-
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const BiddingList = ({ productId }) => {
   const [biddingList, setBiddingList] = useState([]);
@@ -29,9 +28,9 @@ const BiddingList = ({ productId }) => {
 
   if (biddingList.length === 0) {
     return (
-      <div className="grid place-items-center text-gray-500 mb-3">
-        <RiAuctionLine size={50} />
-        <h1 className="text-2xl font-semibold">Be first to bid!</h1>
+      <div className="grid place-items-center font-saira text-gray-500 mb-3">
+        <img src="/no-bids-found.gif" alt="no bids found" className="w-60" />
+        <h1 className="text-2xl font-semibold">No Bidders Yet!</h1>
       </div>
     )
   }
@@ -68,7 +67,7 @@ const BiddingList = ({ productId }) => {
                 {idx + 1}
               </TableCell>
               <TableCell align="center" sx={{ fontSize: 16 }}>{row.bidderUsername}</TableCell>
-              <TableCell align="center" sx={{ fontSize: 16 }}>₦ {row.bidAmount}</TableCell>
+              <TableCell align="center" sx={{ fontSize: 16 }}>₦ {formatCurrency(row.bidAmount)}</TableCell>
               <TableCell align="center" sx={{ fontSize: 16 }}>
                 {getTimeDifference(row.timestamp)}
               </TableCell>

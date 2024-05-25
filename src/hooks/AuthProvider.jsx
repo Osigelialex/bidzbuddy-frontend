@@ -12,27 +12,36 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const accessToken = Cookies.get("accessToken");
-      const decodedToken = jwtDecode(accessToken);
-      if (decodedToken.exp < Date.now()) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-
-        try {
-          const response = await axios.get("/api/v1/auth/get-user");
-          setUser(response.data);
-        } catch (error) {
-          console.log("EROROROROR");
-          if (error.response && error.response.status === 401) {
-            console.log('Not allowed');
-            logout();
-          } else {
-            console.error("Error fetching user data:", error);
-          }
+      try {
+        const response = await axios.get("/api/v1/auth/me");
+        setUser(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          logout();
+        } else {
+          console.error("Error fetching user data:", error);
         }
       }
     };
     fetchUserData();
   }, [accessToken]);
+
+  useEffect(() => {
+    const checkTokenExpired = () => {
+      if (accessToken) {
+        const decodedJwt = jwtDecode(accessToken);
+        if (decodedJwt.exp * 1000 < Date.now()) {
+          logout();
+          console.log("TOKEN REMOVED");
+        } else {
+          console.log("NOT EXPIRED");
+        }
+      }
+    };
+
+    const intervalId = setInterval(checkTokenExpired, 20000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const loginAction = async (data) => {
     const response = await axios.post("/api/v1/auth/login", data);
@@ -40,10 +49,7 @@ const AuthProvider = ({ children }) => {
     const newToken = response.data.accessToken;
     setAccessToken(newToken);
 
-    Cookies.set("accessToken", newToken, {
-      secure: "true",
-      expires: new Date(Date.now() + (1000 * 60 * 60))
-    });
+    Cookies.set("accessToken", newToken, { secure: "true" });
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
   };

@@ -46,7 +46,10 @@ export const options = {
 
 export function BidChart({ chartData }) {
   const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
   };
 
   const bidsByMonth = chartData.reduce((acc, bid) => {
@@ -58,10 +61,19 @@ export function BidChart({ chartData }) {
     return acc;
   }, {});
 
-  const sortedMonths = Object.keys(bidsByMonth).map((month) => new Date(month + ' 1')).sort((a, b) => a - b);
+  const sortedMonths = Object.keys(bidsByMonth)
+    .map((month) => new Date(month + " 1"))
+    .sort((a, b) => a - b);
 
-  const labels = sortedMonths.map((date) => date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
-  const dataPoints = sortedMonths.map((date) => bidsByMonth[date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })]);
+  const labels = sortedMonths.map((date) =>
+    date.toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+  );
+  const dataPoints = sortedMonths.map(
+    (date) =>
+      bidsByMonth[
+        date.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+      ],
+  );
 
   const data = {
     labels,
@@ -76,7 +88,7 @@ export function BidChart({ chartData }) {
   };
 
   return (
-    <div className="col-span-8">
+    <div className="col-span-8 bg-white p-3 rounded-lg">
       <Line options={options} data={data} />
     </div>
   );

@@ -22,21 +22,21 @@ export default function MyProductsTable({ myproducts }) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a bidding list">
         <TableHead>
           <TableRow>
-            <StyledTableCell>
+            <TableCell>
               <span className="text-lg font-saira">Product Name</span>
-            </StyledTableCell>
-            <StyledTableCell>
+            </TableCell>
+            <TableCell>
               <span className="text-lg font-saira">Product Image</span>
-            </StyledTableCell>
-            <StyledTableCell>
+            </TableCell>
+            <TableCell>
               <span className="text-lg font-saira">Current Bid</span>
-            </StyledTableCell>
-            <StyledTableCell>
+            </TableCell>
+            <TableCell>
               <span className="text-lg font-saira">Status</span>
-            </StyledTableCell>
-            <StyledTableCell>
+            </TableCell>
+            <TableCell>
               <span className="text-lg font-saira">Condition</span>
-            </StyledTableCell>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,9 +56,9 @@ export default function MyProductsTable({ myproducts }) {
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 {product.isBiddingClosed ? (
-                  <span className="text-lg text-red-400">Closed</span>
+                  <span className="bg-green-100 text-red-500 rounded-lg p-1 border border-red-500">closed</span>
                 ) : (
-                  <span className="text-lg text-green-400">Open</span>
+                  <span className="bg-green-100 text-green-500 rounded-lg p-1 border border-green-500">open</span>
                 )}
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">

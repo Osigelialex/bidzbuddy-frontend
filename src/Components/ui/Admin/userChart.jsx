@@ -20,14 +20,14 @@ export const UserChart = ({ chartData }) => {
         label: "Number of Users",
         data: [users.BUYER, users.SELLER, users.ADMIN],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
+          "rgba(168, 85, 247, 0.2)",
           "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
+          "rgba(236, 72, 153, 0.2)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
+          "rgba(168, 85, 247, 1)",
           "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
+          "rgba(236, 72, 153, 1)",
         ],
         borderWidth: 1,
       },
@@ -35,7 +35,7 @@ export const UserChart = ({ chartData }) => {
   };
 
   return (
-    <div className="col-span-4">
+    <div className="col-span-4 bg-white p-3 rounded-lg">
       <Doughnut data={data} />
     </div>
   );

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/AuthProvider";
 import { CiLock } from "react-icons/ci";
 import ProductDetailCard from "../atom/ProductDetailCard";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const ProductInfo = ({
   id,
@@ -95,7 +96,7 @@ const ProductInfo = ({
         <p className="text-md mt-2 leading-7">{description}</p>
         <p className="mt-7 sm:text-xl">
           Current Bidding Price:{" "}
-          <span className="text-2xl font-medium">₦ {currentBid}</span>
+          <span className="text-xl font-medium">₦ {formatCurrency(currentBid)}</span>
         </p>
 
         <div className="mt-7 w-full rounded-md border p-5">
@@ -106,6 +107,16 @@ const ProductInfo = ({
             </div>
           ) : (
             <>
+              {/* Not logged in */}
+              {!auth.user && (
+                <div className="flex gap-2 items-center align-middle">
+                  <CiLock size={50} />
+                  <p className="text-red-500">
+                    Please login to place a bid on this product
+                  </p>
+                </div>
+              )}
+              
               {/* Logged in as seller */}
               {auth.user && auth.user.role === "SELLER" && (
                 <div className="flex gap-2 items-center align-middle">
