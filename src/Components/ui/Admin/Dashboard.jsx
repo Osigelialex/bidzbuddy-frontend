@@ -33,9 +33,9 @@ const Dashboard = () => {
 
   return (
     <div className="pb-10">
-      <div className="flex items-center justify-between bg-white p-5 mx-1 align-middle">
+      <div className="flex items-center justify-between bg-white p-3 mx-1 align-middle">
         <h1 className="font-bold text-lg">BidzBuddy Admin</h1>
-        <div className="text-md flex items-center gap-3 align-middle text-gray-500">
+        <div className="text-sm flex items-center gap-3 align-middle text-gray-500">
           <CalendarMonthIcon />
           <p>{new Date().toJSON().slice(0, 10)}</p>
         </div>

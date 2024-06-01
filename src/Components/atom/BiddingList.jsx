@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import axios from "../../config/axiosConfig";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,43 +6,26 @@ import TableRow from "@mui/material/TableRow";
 import getTimeDifference from "../../utils/getTimeDifference";
 import { formatCurrency } from "../../utils/formatCurrency";
 
-const BiddingList = ({ productId }) => {
-  const [biddingList, setBiddingList] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/v1/bids/list/${productId}`);
-        setBiddingList(response.data);
-        console.table(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [productId]);
-
-
+const BiddingList = ({ biddingList }) => {
   if (biddingList.length === 0) {
     return (
-      <div className="grid place-items-center font-saira text-gray-500 mb-3">
+      <div className="mb-3 grid place-items-center font-saira text-gray-500">
         <img src="/no-bids-found.gif" alt="no bids found" className="w-60" />
         <h1 className="text-2xl font-semibold">No Bidders Yet!</h1>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="sm:mx-auto m-5 max-h-96 overflow-auto sm:w-5/6 border">
-      <div className="bg-slate-50 p-3 text-center text-xl font-bold border-b">
-        Bidding History
+    <div className="m-5 max-h-96 overflow-auto border sm:mx-auto sm:w-5/6">
+      <div className="border-b bg-purple-950 p-3 text-center text-white">
+        <h1 className="font-semibold">Bidding History</h1>
       </div>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="center" sx={{ fontSize: 16 }}>
-              Position
+              Standing
             </TableCell>
             <TableCell align="center" sx={{ fontSize: 16 }}>
               Username
@@ -63,11 +44,20 @@ const BiddingList = ({ productId }) => {
               key={idx}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="center" sx={{ fontSize: 16}} component="th" scope="row">
-                {idx + 1}
+              <TableCell
+                align="center"
+                sx={{ fontSize: 16 }}
+                component="th"
+                scope="row"
+              >
+                {idx + 1 === 1 ? <p className="text-2xl">👑</p> : idx + 1}
               </TableCell>
-              <TableCell align="center" sx={{ fontSize: 16 }}>{row.bidderUsername}</TableCell>
-              <TableCell align="center" sx={{ fontSize: 16 }}>₦ {formatCurrency(row.bidAmount)}</TableCell>
+              <TableCell align="center" sx={{ fontSize: 16 }}>
+                {row.bidderUsername}
+              </TableCell>
+              <TableCell align="center" sx={{ fontSize: 16 }}>
+                ₦ {formatCurrency(row.bidAmount)}
+              </TableCell>
               <TableCell align="center" sx={{ fontSize: 16 }}>
                 {getTimeDifference(row.timestamp)}
               </TableCell>

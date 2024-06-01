@@ -172,7 +172,7 @@ const NewProductForm = () => {
         type="submit"
         className="w-full cursor-pointer grid place-items-center rounded-md bg-purple-500 p-3 font-bold text-white transition-all duration-300 ease-in-out hover:bg-purple-600"
       >
-        {loading ? <CircularProgress size={20} /> : "Add Product"}
+        {loading ? <CircularProgress size={20} color="inherit" /> : "Add Product"}
       </button>
     </form>
   );

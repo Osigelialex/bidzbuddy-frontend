@@ -18,12 +18,14 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route
+  Route,
 } from "react-router-dom";
 import AdminLayout from "./Components/ui/Admin/AdminLayout";
 import AdminRoute from "./Auth/AdminRoute";
 import Dashboard from "./Components/ui/Admin/Dashboard";
 import ProductsList from "./Components/ui/Admin/ProductsList";
+import UsersList from "./Components/ui/Admin/UsersList";
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,14 +49,15 @@ const router = createBrowserRouter(
         </Route>
       </Route>
       <Route element={<AdminRoute />}>
-        <Route path="admin/*" element={<AdminLayout /> }>
+        <Route path="admin/*" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<ProductsList />} />
+          <Route path="users" element={<UsersList />} />
         </Route>
       </Route>
-    </Route>
-  )
-)
+    </Route>,
+  ),
+);
 
 function App() {
   useEffect(() => {
@@ -64,6 +67,17 @@ function App() {
 
   return (
     <div className="font-inter">
+      <Toaster
+        richColors
+        position="bottom-right"
+        closeButton={true}
+        toastOptions={{
+          style: {
+            fontSize: "1.1rem",
+          },
+          className: "class",
+        }}
+      />
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>

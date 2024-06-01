@@ -1,6 +1,5 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { formatCurrency } from "../../utils/formatCurrency";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ConfirmationDialog from "./ConfirmationDialog";
@@ -8,51 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const columns = [
   { field: "id", headerName: "ID", width: 50 },
-  { field: "name", headerName: "Product Name", width: 200 },
-  {
-    field: "productImageUrl",
-    headerName: "Product Image",
-    width: 125,
-    type: "string",
-    sortable: false,
-    renderCell: (params) => (
-      <img
-        src={params.value}
-        alt="Product"
-        style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-      />
-    ),
-  },
-  { field: "categoryName", headerName: "Category", width: 120 },
-  { field: "condition", headerName: "Condition", width: 70 },
-  {
-    field: "biddingClosed",
-    headerName: "Status",
-    width: 90,
-    type: "boolean",
-    renderCell: (params) => 
-      params.value === true ? (
-        <span className="rounded bg-red-50 px-2 py-1 text-red-600">
-          Closed
-        </span>
-       ) : (
-        <span className="rounded bg-green-50 px-2 py-1 text-green-600">
-          Open
-        </span>
-      ),
-  },
-  {
-    field: "minimumBid",
-    headerName: "Minimum Bid",
-    width: 130,
-    renderCell: (params) => `₦${formatCurrency(params.value)}`,
-  },
-  {
-    field: "currentBid",
-    headerName: "Current Bid",
-    width: 160,
-    renderCell: (params) => `₦${formatCurrency(params.value)}`,
-  },
+  { field: "firstname", headerName: "FirstName", width: 200 },
+  { field: "lastname", headerName: "LastName", width: 120 },
+  { field: "username", headerName: "Username", width: 120 },
+  { field: "email", headerName: "Email", width: 200 },
   {
     headerName: "Actions",
     width: 200,
@@ -68,13 +26,15 @@ export default function ProductsList({ data }) {
   const [query, setQuery] = useState("");
   const sortedData = data.sort((a, b) => a.id - b.id);
   const filteredRows = sortedData.filter((row) =>
-    row.name.toLowerCase().includes(query.toLowerCase()),
+    row.firstname.toLowerCase().includes(query.toLowerCase()) ||
+    row.username.toLowerCase().includes(query.toLowerCase()) ||
+    row.lastname.toLowerCase().includes(query.toLowerCase())
   );
 
   const navigate = useNavigate();
 
   const handleRowClick = (params) => {
-    navigate(`../../products/${params.row.id}`);
+    
   }
 
   return (

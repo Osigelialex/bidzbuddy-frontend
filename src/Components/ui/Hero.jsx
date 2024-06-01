@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 const Hero = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="justify-between text-center lg:text-left gap-10 px-5 pb-6 pt-16 sm:px-16 sm:pb-16 sm:pt-14 lg:grid lg:grid-cols-2">
@@ -36,6 +41,7 @@ const Hero = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-once="true"
+            onClick={() => navigate('/products')}
             className="mt-6 bg-purple-600 px-9 py-4 font-bold text-white shadow-lg"
           >
             START EXPLORING

@@ -26,15 +26,14 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (auth.user) {
-      navigate("/");
+      navigate(-1);
     }
   }, []);
 
   const onSubmit = async (data) => {
     try {
       await auth.loginAction(data);
-      console.log(auth.user);
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       if (error.response) {
         setError("root", {
@@ -50,7 +49,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-full bg-white px-3 py-7 shadow-md sm:w-[560px]">
+    <div className="w-full bg-white px-3 py-7 sm:shadow-md sm:w-[560px]">
       <div className="grid justify-start px-5">
         <h1 className="mb-3 text-xl font-semibold">Log In to your account</h1>
         <div className="text-md flex gap-3">

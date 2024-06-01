@@ -27,7 +27,7 @@ const AdminSidebar = () => {
             <p>Products</p>
           </li>
         </Link>
-        <Link to="">
+        <Link to="/admin/users">
           <li className="text-md flex cursor-pointer items-center gap-2 px-1 py-3 align-middle font-medium hover:bg-purple-300 hover:text-purple-800">
             <CiUser size={18} />
             <p>Users</p>

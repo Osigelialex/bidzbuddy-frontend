@@ -22,7 +22,11 @@ export default function MyBidsTable({ recentBids }) {
   return (
     <TableContainer component={Paper} elevation={0} className="min-h-full col-span-12 mt-8">
       <h1 className="text-xl font-semibold text-left ml-3 my-5">Recent Bids</h1>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a bidding list">
+      <Table
+        sx={{ minWidth: 650 }}
+        size="small"
+        aria-label="a bidding list"
+      >
         <TableHead>
           <TableRow>
             <TableCell>

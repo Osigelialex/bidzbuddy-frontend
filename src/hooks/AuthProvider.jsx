@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
 
     const intervalId = setInterval(checkTokenExpired, 20000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [accessToken]);
 
   const loginAction = async (data) => {
     const response = await axios.post("/api/v1/auth/login", data);

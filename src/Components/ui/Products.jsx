@@ -132,7 +132,10 @@ const Products = () => {
         </div>
         {!loading && products.length === 0 ? (
           <div className="grid place-items-center min-h-100 text-gray-600">
-            <img src="/not-found.gif" alt="not found" className="w-75" />
+            <div className="grid place-items-center">
+            <img src="/not-found.gif" alt="not found" className="w-90 h-90" />
+            <p className="font-saira">No products found</p>
+            </div>
           </div>
         ) : (
           <div className="grid gap-3 sm:grid-cols-3">

@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../../hooks/AuthProvider";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useNavigate } from "react-router-dom";
+import { CiLogout } from "react-icons/ci";
 
 export default function BasicMenu({ title, role }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -49,7 +50,8 @@ export default function BasicMenu({ title, role }) {
       >
         {auth.user.role !== "ADMIN" && <MenuItem onClick={() => navigate("/account/overview")}>Dashboard</MenuItem>}
         {auth.user.role === "ADMIN" && <MenuItem onClick={() => navigate("/admin/dashboard")}>Admin Dashboard</MenuItem>}
-        <MenuItem onClick={logout} style={{ color: "purple" }}>
+        <MenuItem onClick={logout} style={{ color: "purple", fontWeight: "500" }}>
+          <CiLogout size={20} className="mr-2" />
           Logout
         </MenuItem>
       </Menu>
