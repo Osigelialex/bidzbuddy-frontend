@@ -62,7 +62,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
             className="w-full border border-gray-300 rounded-md p-2"
             onChange={(e) => changeCondition(e.target.value)}
           >
-            <option value="" defaultValue={true}>Select Condition</option>
+            <option value="" defaultValue={true}>All Conditions</option>
             <option value="NEW">New</option>
             <option value="USED">Used</option>
           </select>

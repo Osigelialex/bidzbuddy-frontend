@@ -6,6 +6,7 @@ import {
   PointElement,
   LineElement,
   Title,
+  Filler,
   Tooltip,
   Legend,
 } from "chart.js";
@@ -19,6 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  Filler
 );
 
 export const options = {
@@ -79,10 +81,11 @@ export function BidChart({ chartData }) {
     labels,
     datasets: [
       {
-        label: "Bidding Data",
+        fill: true,
+        label: "Bidding Data Over time",
         data: dataPoints,
         borderColor: "rgb(168 85 247)",
-        backgroundColor: "rgb(168 85 247)",
+        backgroundColor: "rgb(235, 205, 255, 0.5)",
       },
     ],
   };

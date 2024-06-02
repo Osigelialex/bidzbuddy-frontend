@@ -7,6 +7,7 @@ import { TbCategory2 } from "react-icons/tb";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { BidChart } from "./BidChart";
 import { UserChart } from "./userChart";
+import { VerticalBarChart } from "./ItemsBidChart";
 import RecentBids from "./RecentBids";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
@@ -88,10 +89,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-12">
-          <BidChart chartData={bids} />
-          <UserChart chartData={users} />
-          <RecentBids recentBids={recentBids} />
+        <div>
+          <div className="grid gap-3 sm:grid-cols-12">
+            <BidChart chartData={bids} />
+            <UserChart chartData={users} />
+          </div>
+          <VerticalBarChart chartData={bids} />
+          {/* <RecentBids recentBids={recentBids} /> */}
         </div>
       </div>
     </div>

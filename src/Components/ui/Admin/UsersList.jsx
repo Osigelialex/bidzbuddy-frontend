@@ -2,6 +2,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { useEffect, useState } from "react";
 import axios from "../../../config/axiosConfig";
 import { CircularProgress } from "@mui/material";
+import { FaRegUser } from "react-icons/fa";
 import AdminUsersList from "../../atom/AdminUsersList";
 
 const UsersList = () => {
@@ -22,7 +23,10 @@ const UsersList = () => {
   return (
     <div className="pb-10">
       <div className="flex items-center justify-between bg-white p-3 mx-1 align-middle">
-        <h1 className="text-lg font-bold">Users</h1>
+        <h1 className="text-lg font-bold flex items-center align-middle gap-3">
+          <FaRegUser />
+          <p>users</p>
+        </h1>
         <div className="text-sm flex items-center gap-3 align-middle text-gray-500">
           <CalendarMonthIcon />
           <p>{new Date().toJSON().slice(0, 10)}</p>

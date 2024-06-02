@@ -3,11 +3,17 @@ import { useEffect, useState } from "react";
 import axios from "../../../config/axiosConfig";
 import { CircularProgress } from "@mui/material";
 import AdminProductsList from "../../atom/AdminProductsList";
+import { AiOutlineProduct } from "react-icons/ai";
 
 const ProductsList = () => {
 
   const [products, setProducts] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const handleRefresh = () => {
+    setRefresh(prev => !prev);
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,12 +23,15 @@ const ProductsList = () => {
     }
 
     fetchProducts();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="pb-10">
       <div className="flex items-center justify-between bg-white p-3 mx-1 align-middle">
-        <h1 className="font-bold text-lg">Products</h1>
+        <div className="flex gap-2 items-center align-middle text-lg">
+          <AiOutlineProduct />
+          <p>Products</p>
+        </div>
         <div className="text-sm flex items-center gap-3 align-middle text-gray-500">
           <CalendarMonthIcon />
           <p>{new Date().toJSON().slice(0, 10)}</p>
@@ -34,7 +43,7 @@ const ProductsList = () => {
             <CircularProgress color="secondary" />
           </div>
         ) : (
-          <AdminProductsList data={products} />
+          <AdminProductsList handleRefresh={handleRefresh} data={products} />
         )}
       </div>
     </div>

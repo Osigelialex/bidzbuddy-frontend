@@ -28,9 +28,8 @@ const AuctionDetail = () => {
       try {
         const products = await axios.get(`/api/v1/products/${id}`);
         const biddingList = await axios.get(`/api/v1/bids/list/${id}`);
-
-        setProduct(products.data);
         setBiddingList(biddingList.data);
+        setProduct(products.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -46,28 +45,28 @@ const AuctionDetail = () => {
         <></>
       ) : (
         <>
-        <Navbar />
-        <Banner title="Auction Details" />
-        <ProductInfo
-          id={product.id}
-          name={product.name}
-          image={product.productImageUrl}
-          description={product.description}
-          currentBid={product.currentBid}
-          remainingTime={product.remainingTime}
-          closed={product.biddingClosed}
-          handleRefresh={handleRefresh}
-        />
-        {auth.user ? (
-          <BiddingList biddingList={biddingList} />
-        ) : (
-          <div className="mx-auto mb-7 grid place-items-center gap-3 text-gray-600">
-            <img src="/login-first.gif" alt="login first" className="w-52" />
-            <p className="font-saira text-lg">
-              Bidding History is only available after login
-            </p>
-          </div>
-        )}
+          <Navbar />
+          <Banner title="Auction Details" />
+          <ProductInfo
+            id={product.id}
+            name={product.name}
+            image={product.productImageUrl}
+            description={product.description}
+            currentBid={product.currentBid}
+            remainingTime={product.remainingTime}
+            closed={product.biddingClosed}
+            handleRefresh={handleRefresh}
+          />
+          {auth.user ? (
+            <BiddingList biddingList={biddingList} />
+          ) : (
+            <div className="mx-auto mb-7 grid place-items-center gap-3 text-gray-600">
+              <img src="/login-first.gif" alt="login first" className="w-52" />
+              <p className="font-saira text-lg">
+                Bidding History is only available after login
+              </p>
+            </div>
+          )}
         </>
       )}
     </div>

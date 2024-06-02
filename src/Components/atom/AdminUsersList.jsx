@@ -2,7 +2,6 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import ConfirmationDialog from "./ConfirmationDialog";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
@@ -16,7 +15,7 @@ const columns = [
     width: 200,
     renderCell: (cellValues) => {
       return <div className="flex items-center gap-3 align-middle">
-        <ConfirmationDialog data={cellValues.row} />
+        
       </div>
     },
   },
@@ -39,7 +38,7 @@ export default function ProductsList({ data }) {
 
   return (
     <div className="p-2">
-      <div className="relative mb-5 inline-block rounded-xl bg-[#efefef] hover:ring-2 hover:ring-purple-300">
+      <div className="relative mx-auto mb-5 w-1/2 border rounded-xl bg-[#efefef] hover:ring-2 hover:ring-purple-300">
         <SearchIcon className="absolute left-2 top-1/2 -translate-y-1/2 transform text-gray-400" />
         <input
           type="search"

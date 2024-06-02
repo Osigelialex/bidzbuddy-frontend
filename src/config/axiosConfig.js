@@ -9,7 +9,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(config => {
   const accessToken = Cookies.get("accessToken");
-  console.log(accessToken);
   if (!accessToken) {
     return config;
   }

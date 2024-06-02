@@ -13,6 +13,14 @@ export const UserChart = ({ chartData }) => {
     return acc;
   }, {});
 
+  const options = {
+    plugins: {
+      legend: {
+        position: 'top'
+      }
+    }
+  }
+
   const data = {
     labels: ["BUYER", "SELLER", "ADMIN"],
     datasets: [
@@ -36,7 +44,8 @@ export const UserChart = ({ chartData }) => {
 
   return (
     <div className="col-span-4 bg-white p-3 rounded-lg">
-      <Doughnut data={data} />
+      <Doughnut data={data} options={options} />
+      <h2 className="text-sm text-center mt-5">Registered account types</h2>
     </div>
   );
 };
