@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/AuthProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const schema = z.object({
   username: z.string().min(1, { message: "Email or username is required" }),
@@ -34,6 +35,7 @@ const LoginForm = () => {
     try {
       await auth.loginAction(data);
       navigate(-1);
+      toast.success(`Welcome back!`);
     } catch (error) {
       if (error.response) {
         setError("root", {

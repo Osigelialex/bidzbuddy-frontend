@@ -29,7 +29,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
           <h1 className="text-xl font-bold font-saira">Categories</h1>
           <ul className="my-5">
             <li
-              className="text-gray-500 hover:bg-purple-400 hover:text-white w-full px-3 py-3 cursor-pointer rounded-md"
+              className="text-gray-500 hover:border-l-4 hover:border-purple-500 w-full px-3 py-3 cursor-pointer"
               onClick={() => changeCategory("all", "All")}
             >
               All Products
@@ -37,7 +37,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
             {categories.map((category) => (
               <li 
                 key={category.id}
-                className="text-gray-500 hover:bg-purple-400 hover:text-white w-full px-3 py-3 cursor-pointer rounded-md"
+                className="text-gray-500 hover:border-l-4 hover:border-purple-500 w-full px-3 py-3 cursor-pointer"
                 onClick={() => changeCategory(category.id, category.name)}
               >
                 {category.name}

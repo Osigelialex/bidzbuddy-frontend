@@ -25,6 +25,8 @@ import AdminRoute from "./Auth/AdminRoute";
 import Dashboard from "./Components/ui/Admin/Dashboard";
 import ProductsList from "./Components/ui/Admin/ProductsList";
 import UsersList from "./Components/ui/Admin/UsersList";
+import CategoriesList from "./Components/ui/Admin/CategoryList";
+import UnapprovedList from "./Components/ui/Admin/Unapproved";
 import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
@@ -53,6 +55,8 @@ const router = createBrowserRouter(
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<ProductsList />} />
           <Route path="users" element={<UsersList />} />
+          <Route path="categories" element={<CategoriesList />} />
+          <Route path="unapproved" element={<UnapprovedList />} />
         </Route>
       </Route>
     </Route>,
@@ -69,13 +73,12 @@ function App() {
     <div className="font-inter">
       <Toaster
         richColors
-        position="bottom-right"
-        closeButton={true}
+        position="top-center"
         toastOptions={{
           style: {
             fontSize: "0.9rem",
-          },
-          className: "class",
+            fontWeight: "bold"
+          }
         }}
       />
       <AuthProvider>

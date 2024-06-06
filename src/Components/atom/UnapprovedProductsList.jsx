@@ -3,37 +3,35 @@ import { DataGrid } from "@mui/x-data-grid";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { HiOutlineLockClosed } from "react-icons/hi";
-import { MdDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import axios from "../../config/axiosConfig";
-import { LuBookOpen } from "react-icons/lu";
+import { GrStatusGood } from "react-icons/gr";
+import { TbLetterX } from "react-icons/tb";
+import { FaRegEye } from "react-icons/fa";
+import ProductViewDialog from "./ProductViewDialog";
 import Dialog from "./Dialog";
 import { toast } from "sonner";
 
-export default function ProductsList({ data, handleRefresh }) {
+export default function UnapprovedProductsList({ data, handleRefresh }) {
   const [query, setQuery] = useState("");
-  const [selectedProductId, setSelectedProductId] = useState(null);
-  const [selectedProductName, setSelectedProductName] = useState("");
-  const [isCloseBiddingDialog, setIsCloseBiddingDialog] = useState(false);
+  const [selectedProductData, setSelectedProductData] = useState({});
+  const [isApproveProductDialog, setIsApproveProductDialog] = useState(false);
   const [isDeleteProductDialog, setIsDeleteProductDialog] = useState(false);
-  const [isReopenBiddingDialog, setIsReopenBiddingDialog] = useState(false);
+  const [isViewDialog, setIsViewDialog] = useState(false);
 
   const sortedData = data.sort((a, b) => a.id - b.id);
   const filteredRows = sortedData.filter((row) =>
     row.name.toLowerCase().includes(query.toLowerCase()),
   );
 
-  const closeBidding = async () => {
+  const approveProduct = async () => {
     try {
-      await axios.patch(`api/v1/products/close/${selectedProductId}`);
-      setIsCloseBiddingDialog(false);
+      await axios.patch(`api/v1/products/approve/${selectedProductData.id}`);
+      setIsApproveProductDialog(false);
       handleRefresh();
-      toast.success("Successfully closed Auction");
+      toast.success("Successfully Approved the product for Auction");
     } catch (error) {
-      setIsCloseBiddingDialog(false);
+      setIsApproveProductDialog(false);
       if (error.response) {
-        console.error(error);
         toast.error(error.response.data.message);
       } else if (error.request) {
         toast.error(error.request.data.message);
@@ -45,33 +43,13 @@ export default function ProductsList({ data, handleRefresh }) {
 
   const deleteProduct = async () => {
     try {
-      await axios.patch(`api/v1/products/${selectedProductId}`);
+      await axios.patch(`api/v1/products/${selectedProductData.id}`);
       setIsDeleteProductDialog(false);
       handleRefresh();
       toast.success("Successfully Deleted the product");
     } catch (error) {
       setIsCloseBiddingDialog(false);
       if (error.response) {
-        console.error(error);
-        toast.error(error.response.data.message);
-      } else if (error.request) {
-        toast.error(error.request.data.message);
-      } else {
-        toast.error("Check your internet connnection and try again");
-      }
-    }
-  };
-
-  const reopenBidding = async () => {
-    try {
-      await axios.patch(`api/v1/products/reopen/${selectedProductId}`);
-      setIsReopenBiddingDialog(false);
-      handleRefresh();
-      toast.success("Successfully reopened Auction");
-    } catch (error) {
-      setIsReopenBiddingDialog(false);
-      if (error.response) {
-        console.error(error);
         toast.error(error.response.data.message);
       } else if (error.request) {
         toast.error(error.request.data.message);
@@ -83,7 +61,7 @@ export default function ProductsList({ data, handleRefresh }) {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "name", headerName: "Product Name", width: 200 },
+    { field: "name", headerName: "Product Name", width: 150 },
     {
       field: "productImageUrl",
       headerName: "Product Image",
@@ -94,7 +72,6 @@ export default function ProductsList({ data, handleRefresh }) {
         <img
           src={params.value}
           alt="Product"
-          onClick={() => handleClick(params)}
           className="h-10 w-10 cursor-pointer rounded-full"
         />
       ),
@@ -102,18 +79,18 @@ export default function ProductsList({ data, handleRefresh }) {
     { field: "categoryName", headerName: "Category", width: 100 },
     { field: "condition", headerName: "Condition", width: 90 },
     {
-      field: "biddingClosed",
+      field: "productApproved",
       headerName: "Status",
       width: 90,
       type: "boolean",
       renderCell: (params) =>
         params.value === true ? (
-          <span className="rounded bg-red-50 px-2 py-1 max-w-16 min-w-16 text-red-600 text-center">
-            Closed
+          <span className="rounded bg-red-50 px-2 py-1 max-w-24 min-w-24 text-red-600">
+            approved
           </span>
         ) : (
-          <span className="rounded bg-green-50 px-2 py-1 max-w-16 min-w-16 text-center text-green-600">
-            Open
+          <span className="rounded bg-yellow-50 px-3 py-1 max-w-24 min-w-24 text-yellow-600">
+            unapproved
           </span>
         ),
     },
@@ -136,37 +113,34 @@ export default function ProductsList({ data, handleRefresh }) {
       renderCell: (cellValues) => {
         return (
           <div className="flex items-center gap-3 align-middle">
-            {cellValues.row.biddingClosed && (<button title="Reopen Auction">
-              <LuBookOpen
+            <button title="View Product">
+              <FaRegEye
                 size={25}
                 className="cursor-pointer bg-purple-200 p-1 text-purple-400"
                 onClick={() => {
-                  setSelectedProductId(cellValues.row.id);
-                  setSelectedProductName(cellValues.row.name);
-                  setIsReopenBiddingDialog(true);
+                  setSelectedProductData(cellValues.row);
+                  setIsViewDialog(true);
                 }}
               />
-            </button>)}
+            </button>
 
-            {!cellValues.row.biddingClosed && (<button title="Close Auction">
-              <HiOutlineLockClosed
+            <button title="Approve product">
+              <GrStatusGood
+                size={25}
+                className="cursor-pointer bg-green-200 p-1 text-green-400"
+                onClick={() => {
+                  setSelectedProductData(cellValues.row);
+                  setIsApproveProductDialog(true);
+                }}
+              />
+            </button>
+
+            <button title="Reject product">
+              <TbLetterX
                 size={25}
                 className="cursor-pointer bg-red-200 p-1 text-red-400"
                 onClick={() => {
-                  setSelectedProductId(cellValues.row.id);
-                  setSelectedProductName(cellValues.row.name);
-                  setIsCloseBiddingDialog(true);
-                }}
-              />
-            </button>)}
-
-            <button title="Delete Product">
-              <MdDelete
-                size={25}
-                className="cursor-pointer bg-red-200 p-1 text-red-400"
-                onClick={() => {
-                  setSelectedProductId(cellValues.row.id);
-                  setSelectedProductName(cellValues.row.name);
+                  setSelectedProductData(cellValues.row);
                   setIsDeleteProductDialog(true);
                 }}
               />
@@ -177,41 +151,37 @@ export default function ProductsList({ data, handleRefresh }) {
     },
   ];
 
-  const navigate = useNavigate();
-  const handleClick = (params) => {
-    navigate(`../../products/${params.row.id}`);
-  };
-
   return (
     <div className="p-2">
-      {isCloseBiddingDialog && (
+      {isApproveProductDialog && (
         <Dialog
-          title={`Are you sure you want to close bidding for "${selectedProductName}" ?`}
-          message={`By clicking continue, you will end the auctioning process for "${selectedProductName}"
-           and buyers would not be able to bid it anymore.`}
-          color={"red"}
-          callback={closeBidding}
-          onClose={() => setIsCloseBiddingDialog(false)}
+          title={`Are you sure you want to approve the product "${selectedProductData.name}" ?`}
+          message={`By clicking continue, you will approve "${selectedProductData.name}"
+           and buyers would be able to bid for it.`}
+          color={"green"}
+          callback={approveProduct}
+          onClose={() => setIsApproveProductDialog(false)}
+        />
+      )}
+
+      {isViewDialog && (
+        <ProductViewDialog
+          name={selectedProductData.name}
+          productImageUrl={selectedProductData.productImageUrl}
+          description={selectedProductData.description}
+          category={selectedProductData.categoryName}
+          minimumBid={selectedProductData.minimumBid}
+          condition={selectedProductData.condition}
+          onClose={() => setIsViewDialog(false)}
         />
       )}
 
       {isDeleteProductDialog && (
         <Dialog
-          title={`Are you sure you want to delete "${selectedProductName}" ?`}
-          message={`By clicking continue, you will DELETE "${selectedProductName}" from the database, are you sure you want to continue?`}
-          color={"red"}
-          callback={deleteProduct}
-          onClose={() => setIsDeleteProductDialog(false)}
-        />
-      )}
-
-      {isReopenBiddingDialog && (
-        <Dialog
           title={`Are you sure you want to reopen bidding for "${selectedProductName}" ?`}
           message={`By clicking continue, you will reopen the auctioning process for "${selectedProductName}"
            and buyers would be able to bid it again.`}
           color={"purple"}
-          callback={reopenBidding}
           onClose={() => setIsReopenBiddingDialog(false)}
         />
       )}

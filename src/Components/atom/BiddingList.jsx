@@ -18,8 +18,8 @@ const BiddingList = ({ biddingList }) => {
 
   return (
     <div className="m-5 max-h-96 overflow-auto border sm:mx-auto sm:w-5/6">
-      <div className="border-b bg-purple-950 p-3 text-center text-white">
-        <h1 className="font-semibold">Bidding History</h1>
+      <div className="border-b bg-purple-950 p-3 text-center text-white w-full">
+        <h1 className="font-semibold font-saira">Bidding History</h1>
       </div>
       <Table aria-label="simple table">
         <TableHead>

@@ -4,40 +4,42 @@ import { PiUsersThree } from "react-icons/pi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { PiMoneyLight } from "react-icons/pi";
 import { TbCategory2 } from "react-icons/tb";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { BidChart } from "./BidChart";
 import { UserChart } from "./userChart";
 import { VerticalBarChart } from "./ItemsBidChart";
-import RecentBids from "./RecentBids";
+import { toast } from "sonner";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({});
   const [bids, setBids] = useState([]);
-  const [recentBids, setRecentBids] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const dashboardResponse = await axios.get("/api/v1/dashboard");
-      const bidsResponse = await axios.get("/api/v1/bids/all");
-      const userResponse = await axios.get("/api/v1/users");
-      const recentBidsResponse = await axios.get("/api/v1/bids/recent");
+      try {
+        const [dashboardResponse, bidsResponse, userResponse] =
+          await Promise.all([
+            axios.get("/api/v1/dashboard"),
+            axios.get("/api/v1/bids/all"),
+            axios.get("/api/v1/users"),
+          ]);
 
-      setDashboardData(dashboardResponse.data);
-      setBids(bidsResponse.data);
-      setUsers(userResponse.data);
-      setRecentBids(recentBidsResponse.data)
+        setDashboardData(dashboardResponse.data);
+        setBids(bidsResponse.data);
+        setUsers(userResponse.data);
+      } catch (error) {
+        toast.error("An error occurred while fetching data");
+      }
     };
     fetchData();
   }, []);
 
   return (
     <div className="pb-10">
-      <div className="flex items-center justify-between bg-white p-3 mx-1 align-middle">
-        <h1 className="font-bold text-lg">BidzBuddy Admin</h1>
-        <div className="text-sm flex items-center gap-3 align-middle text-gray-500">
-          <CalendarMonthIcon />
+      <div className="mx-1 flex flex-col bg-white p-3 align-middle">
+        <h1 className="font-semibold">BidzBuddy Admin</h1>
+        <div className="flex items-center gap-3 align-middle text-gray-500 text-xs">
           <p>{new Date().toJSON().slice(0, 10)}</p>
         </div>
       </div>
@@ -74,9 +76,7 @@ const Dashboard = () => {
               <TbCategory2 size={20} className="text-red-500" />
               <h2>Total Categories</h2>
             </div>
-            <p className="font-semibold">
-              {dashboardData.totalCategories}
-            </p>
+            <p className="font-semibold">{dashboardData.totalCategories}</p>
           </div>
           <div className="grid place-items-center rounded-lg bg-white p-5 shadow-sm">
             <div className="mb-3 flex items-center justify-center gap-3 align-middle">
@@ -95,7 +95,6 @@ const Dashboard = () => {
             <UserChart chartData={users} />
           </div>
           <VerticalBarChart chartData={bids} />
-          {/* <RecentBids recentBids={recentBids} /> */}
         </div>
       </div>
     </div>

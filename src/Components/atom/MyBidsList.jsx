@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
+import { formatCurrency } from "../../utils/formatCurrency";
 import { tableCellClasses } from '@mui/material/TableCell';
 import Paper from "@mui/material/Paper";
 import getTimeDifference from "../../utils/getTimeDifference";
@@ -45,6 +46,7 @@ export default function MyBidsTable({ mybids }) {
             <TableRow
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              className={bid.isWinningBid ? "border-l-8 border-[#00e400]" : ""}
             >
               <StyledTableCell component="th" scope="row">
                 <span className="text-lg text-gray-500">{bid.productName}</span>
@@ -53,13 +55,13 @@ export default function MyBidsTable({ mybids }) {
                 <img src={bid.productImageUrl} className="w-12 h-12 rounded-full" />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <span className="text-lg text-gray-500">₦ {bid.bidAmount}</span>
+                <span className="text-lg text-gray-500">₦ {formatCurrency(bid.bidAmount)}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                {bid.winningBid ? (
-                  <span className="bg-green-100 text-green-500 rounded-lg p-1 border border-green-500">Won</span>
+                {bid.isWinningBid ? (
+                  <span className="bg-green-100 text-green-500 rounded-lg py-1 px-2">Won</span>
                 ) : (
-                  <span className="bg-yellow-100 text-yellow-500 rounded-lg p-1 border border-yellow-500">Ongoing</span>
+                  <span className="bg-yellow-100 text-yellow-500 rounded-lg py-1 px-2">Ongoing</span>
                 )}
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">

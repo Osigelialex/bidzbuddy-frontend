@@ -15,13 +15,16 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex w-full flex-col gap-3 rounded-md md:col-span-3 text-gray-500 text-xl font-saira">
+      <div className="flex w-full flex-col gap-3 rounded-md font-saira text-xl text-gray-500 md:col-span-3">
         <div
           className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
-          style={{ backgroundColor: active === "overview" ? "rgb(147, 51, 234)" : "", color: active === "overview" ? "white" : ""}}
+          style={{
+            backgroundColor: active === "overview" ? "rgb(147, 51, 234)" : "",
+            color: active === "overview" ? "white" : "",
+          }}
           onClick={() => {
-            setActive("overview")
-            navigate("/account/overview")
+            setActive("overview");
+            navigate("/account/overview");
           }}
         >
           <RiAccountPinBoxLine size={20} className="mr-2 inline-block" />
@@ -30,10 +33,14 @@ const Sidebar = () => {
         {auth.user.role === "SELLER" && (
           <div
             className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
-            style={{ backgroundColor: active === "myproducts" ? "rgb(147, 51, 234)" : "", color: active === "myproducts" ? "white" : ""}}
+            style={{
+              backgroundColor:
+                active === "myproducts" ? "rgb(147, 51, 234)" : "",
+              color: active === "myproducts" ? "white" : "",
+            }}
             onClick={() => {
-              setActive("myproducts")
-              navigate("/account/my-products")
+              setActive("myproducts");
+              navigate("/account/my-products");
             }}
           >
             <FaRegFaceLaughWink className="mr-2 inline-block" />
@@ -41,18 +48,22 @@ const Sidebar = () => {
           </div>
         )}
         {auth.user.role === "BUYER" && (
-          <div 
+          <div
             className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
-            style={{ backgroundColor: active === "mybids" ? "rgb(147, 51, 234)" : "", color: active === "mybids" ? "white" : ""}}
+            style={{
+              backgroundColor: active === "mybids" ? "rgb(147, 51, 234)" : "",
+              color: active === "mybids" ? "white" : "",
+            }}
             onClick={() => {
-              setActive("mybids")
-              navigate("/account/my-bids")
+              setActive("mybids");
+              navigate("/account/my-bids");
             }}
           >
             <RiAuctionLine className="mr-2 inline-block" />
             <p>My Bids</p>
           </div>
         )}
+
         <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
           <CiSettings size={20} className="mr-2 inline-block" />
           <p>Settings</p>

@@ -4,6 +4,8 @@ import { useAuth } from "../../hooks/AuthProvider";
 import { CiLock } from "react-icons/ci";
 import ProductDetailCard from "../atom/ProductDetailCard";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { GiPartyPopper } from "react-icons/gi";
+import PaystackPayment from "../atom/PaystackPayment";
 import { toast } from "sonner";
 
 const ProductInfo = ({
@@ -14,9 +16,12 @@ const ProductInfo = ({
   currentBid,
   remainingTime,
   closed,
-  handleRefresh
+  handleRefresh,
+  winner,
+  paid
 }) => {
-  const [amount, setAmount] = useState('');
+  console.log(winner, paid);
+  const [amount, setAmount] = useState("");
 
   const auth = useAuth();
 
@@ -42,7 +47,7 @@ const ProductInfo = ({
       }
     }
 
-    setAmount('');
+    setAmount("");
   };
 
   return (
@@ -64,10 +69,24 @@ const ProductInfo = ({
         </p>
 
         <div className="mt-7 w-full rounded-md border p-5">
-          {closed ? (
+          {closed && !winner ? (
             <div className="flex items-center gap-2 align-middle">
               <CiLock size={50} />
               <p className="text-red-500">Auction Closed for this product</p>
+            </div>
+          ) : (winner && !paid) ? (
+            <div className="flex items-center gap-5 align-middle">
+              <GiPartyPopper size={80} />
+              <p className="text-green-500">
+                {`Congratulations on winning the auction for the ${name}! Click the button below to proceed to checkout and make payment.`}
+              </p>
+            </div>
+          ) : (winner && paid) ? (
+            <div className="flex items-center gap-2 align-middle">
+              <GiPartyPopper size={50} />
+              <p className="text-green-500">
+                Payment successful! You can now pick up your product
+              </p>
             </div>
           ) : (
             <>
@@ -135,6 +154,21 @@ const ProductInfo = ({
             </>
           )}
         </div>
+        {/* proceed to payment */}
+        {(winner && !paid) && (
+          <>
+            <PaystackPayment
+              amount={currentBid * 100}
+              email={'osigelialex@gmail.com'}
+              publicKey={"pk_test_42726b31137327bf7e1b529ca436aa9857794be7"}
+              productId={id}
+            />
+            <div className="flex gap-2 items-center align-middle mt-3">
+              <img src="/visa-card.svg" />
+              <img src="/mastercard.svg" />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
