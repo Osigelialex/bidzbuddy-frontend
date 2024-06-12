@@ -14,6 +14,10 @@ const ProductsList = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios.get("/api/v1/products/dashboard");
       setProducts(response.data);
@@ -24,7 +28,7 @@ const ProductsList = () => {
   }, [refresh]);
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 font-saira">
       <div className="flex flex-col justify-between bg-white p-3 mx-1 align-middle">
         <div className="flex gap-2 items-center align-middle text-md font-semibold">
           <p>Products</p>

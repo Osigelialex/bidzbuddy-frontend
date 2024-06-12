@@ -14,6 +14,10 @@ const CategoryList = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios.get("/api/v1/categories");
       setCategories(response.data);

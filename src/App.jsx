@@ -13,6 +13,7 @@ import MyBids from "./Components/ui/MyBids";
 import Overview from "./Components/ui/Overview";
 import MyProducts from "./Components/ui/MyProducts";
 import NewProduct from "./Pages/NewProduct";
+import ContactUs from "./Pages/ContactUs";
 import { useEffect } from "react";
 import {
   RouterProvider,
@@ -27,6 +28,8 @@ import ProductsList from "./Components/ui/Admin/ProductsList";
 import UsersList from "./Components/ui/Admin/UsersList";
 import CategoriesList from "./Components/ui/Admin/CategoryList";
 import UnapprovedList from "./Components/ui/Admin/Unapproved";
+import VerificationEmailSent from "./Pages/VerificationEmailSent";
+import EmailVerification from "./Pages/EmailVerification";
 import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
@@ -37,6 +40,9 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} />
       <Route path="products" element={<Auctions />} />
       <Route path="products/:id" element={<AuctionDetail />} />
+      <Route path="contact-us" element={<ContactUs />} />
+      <Route path="link-sent" element={<VerificationEmailSent />} />
+      <Route path="email-verification" element={<EmailVerification />} />
       <Route element={<PrivateRoute />}>
         <Route path="new-product" element={<NewProduct />} />
       </Route>

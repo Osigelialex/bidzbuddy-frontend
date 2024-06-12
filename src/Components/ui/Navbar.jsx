@@ -28,7 +28,9 @@ const Navbar = () => {
               <Link to="/products">Auctions</Link>
             </li>
             <li className="text-md cursor-pointer font-medium">About us</li>
-            <li className="text-md cursor-pointer font-medium">Contact</li>
+            <li className="text-md cursor-pointer font-medium">
+              <Link to="/contact-us">Contact</Link>
+            </li>
 
             {/* Account dropdown */}
             {auth.user ? (

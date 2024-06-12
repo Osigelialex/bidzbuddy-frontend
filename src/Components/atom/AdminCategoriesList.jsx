@@ -1,16 +1,19 @@
 import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { FaPencil } from "react-icons/fa6";
-import { MdOutlineCategory } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
-import { MdDelete } from "react-icons/md";
 import axios from "../../config/axiosConfig";
 import Dialog from "./Dialog";
+import EditCategoryDialog from "./EditDialog";
 import { toast } from "sonner";
 
 export default function CategoriesList({ data, handleRefresh }) {
+  const [newCategory, setNewCategory] = useState("");
+  const [addCategoryDialog, setAddCategoryDialog] = useState(false);
+  const [editCategory, setEditCategory] = useState(false);
+  const [prev, setPrev] = useState("");
+  const [id, setId] = useState(null);
   const [query, setQuery] = useState("");
 
   const sortedData = data.sort((a, b) => a.id - b.id);
@@ -18,22 +21,54 @@ export default function CategoriesList({ data, handleRefresh }) {
     row.name.toLowerCase().includes(query.toLowerCase()),
   );
 
-  const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "name", headerName: "Category Name", width: 340 },
-    {
-      field: "actions",
-      headerName: "Actions",
-      renderCell: (params) => (
-        <button className="bg-purple-200 p-2 text-purple-500">
-          <FaPencil size={20} />
-        </button>
-      ),
-    },
-  ];
+  const addNewCategory = async () => {
+    try {
+      await axios.post("/api/v1/categories", { name: newCategory });
+      handleRefresh();
+      toast.success("Category added successfully");
+      setNewCategory("");
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else if (error.request) {
+        toast.error("Network error. Please try again");
+      } else {
+        toast.error("An error occurred. Please try again");
+      }
+    }
+  }
+
+  const handleClick = (prev, id) => {
+    setPrev(prev);
+    setId(id);
+    setEditCategory(true);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setAddCategoryDialog(true);
+  }
 
   return (
-    <div className="p-2">
+    <div className="p-2 font-saira">
+      {addCategoryDialog && (
+        <Dialog
+          title="Add Category"
+          message={`Are you sure you want to add \"${newCategory}\" as a new category?`}
+          callback={addNewCategory}
+          onClose={() => setAddCategoryDialog(false)}
+        />
+      )}
+
+      {editCategory && (
+        <EditCategoryDialog
+          onClose={() => setEditCategory(false)}
+          callback={handleRefresh}
+          previous={prev}
+          id={id}
+        />
+      )}
+
       <div className="relative mx-auto mb-10 w-full rounded-xl border bg-[#efefef] hover:ring-2 hover:ring-purple-300 sm:w-1/2">
         <SearchIcon className="absolute left-2 top-1/2 -translate-y-1/2 transform text-gray-400" />
         <input
@@ -45,12 +80,26 @@ export default function CategoriesList({ data, handleRefresh }) {
         />
       </div>
 
-      <ul className="mx-auto w-full bg-white sm:w-2/3 border">
+      <form
+        onSubmit={handleSubmit}
+        className="flex justify-start mb-5 w-1/3"
+      >
+        <input
+          type="text"
+          placeholder="Category name"
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          className="px-2 border w-60 outline-none hover:ring-2 hover:ring-purple-300"
+          required
+        />
+        <button type="submit" className="bg-purple-500 p-2 text-white h-full">
+          <FaPlus size={20} />
+        </button>
+      </form>
+
+      <ul className="mx-auto w-full bg-white border">
         <div className="flex justify-between p-2">
           <h2>Product Categories</h2>
-          <button className="bg-purple-200 px-3 py-1 text-black text-md">
-            Create New
-          </button>
         </div>
         {filteredRows.length == 0 && (
           <div className="grid place-items-center">
@@ -65,12 +114,11 @@ export default function CategoriesList({ data, handleRefresh }) {
             className="flex items-center justify-between border bg-white p-3 align-middle"
           >
             <div className="flex gap-3">
-              <MdOutlineCategory size={20} className="text-purple-500" />
               {row.name}
             </div>
 
             <button className="bg-purple-200 p-2 text-purple-500">
-              <FaPencil size={20} />
+              <FaPencil size={20} onClick={() => handleClick(row.name, row.id)} />
             </button>
           </li>
         ))}

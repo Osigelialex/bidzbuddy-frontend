@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Cookies from "js-cookie";
 
 const schema = z.object({
   role: z.string().min(1, { message: "Please select your role" }),
@@ -24,6 +25,7 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
+    reset,
     setError,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -34,8 +36,11 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("/api/v1/auth/signup", data);
-      navigate("/login");
+      const response = await axios.post("/api/v1/auth/signup", data);
+      console.log(response.data);
+      Cookies.set("email", response.data);
+      navigate("/link-sent");
+      reset();
     } catch (error) {
       if (error.response) {
         setError("root", {
@@ -46,6 +51,7 @@ const Signup = () => {
           message: "Oops! Something went wrong, check your connection",
         });
       } else {
+        console.error(error);
         setError("root", {
           message: "Something went wrong, check your connection and try again",
         });
@@ -65,18 +71,18 @@ const Signup = () => {
         </div>
       </div>
       <form
-        className="flex flex-col gap-7 px-5"
+        className="flex flex-col gap-5 px-5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col">
-          <label htmlFor="role" className="mb-3">
+          <label htmlFor="role" className="mb-3 font-bold">
             Account Type *
           </label>
           <select
             id="role"
             {...register("role")}
             defaultValue=""
-            className="w-full border bg-white p-3"
+            className="w-full border p-3 bg-slate-200 font-medium"
           >
             <option value="" disabled>
               I am a...
@@ -92,15 +98,14 @@ const Signup = () => {
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="flex flex-col">
-            <label htmlFor="firstname" className="mb-3">
+            <label htmlFor="firstname" className="mb-3 font-bold">
               First Name *
             </label>
             <input
               id="firstname"
               {...register("firstname")}
               type="text"
-              placeholder="Firstname"
-              className="w-full border p-3"
+              className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
             />
             {errors.firstname && (
               <div className="text-sm font-semibold text-red-500">
@@ -109,14 +114,13 @@ const Signup = () => {
             )}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="lastname" className="mb-3">
+            <label htmlFor="lastname" className="mb-3 font-bold">
               Last Name *
             </label>
             <input
               id="lastname"
               {...register("lastname")}
-              placeholder="Lastname"
-              className="w-full border p-3"
+              className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
             />
             {errors.lastname && (
               <div className="text-sm font-semibold text-red-500">
@@ -126,15 +130,14 @@ const Signup = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email" className="mb-3">
+          <label htmlFor="email" className="mb-3 font-bold">
             Enter your email *
           </label>
           <input
             id="email"
             {...register("email")}
             type="email"
-            placeholder="Email address"
-            className="w-full border p-3"
+            className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
           />
           {errors.email && (
             <div className="text-sm font-semibold text-red-500">
@@ -143,15 +146,14 @@ const Signup = () => {
           )}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="username" className="mb-3">
+          <label htmlFor="username" className="mb-3 font-bold">
             Username *
           </label>
           <input
             id="username"
             {...register("username")}
             type="text"
-            placeholder="Pick a username"
-            className="w-full border p-3"
+            className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
           />
           {errors.username && (
             <div className="text-sm font-semibold text-red-500">
@@ -160,15 +162,14 @@ const Signup = () => {
           )}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password" className="mb-3">
+          <label htmlFor="password" className="mb-3 font-bold">
             Password *
           </label>
           <input
             id="password"
             {...register("password")}
             type="password"
-            placeholder="password"
-            className="w-full border p-3"
+            className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
           />
           {errors.password && (
             <div className="text-sm font-semibold text-red-500">

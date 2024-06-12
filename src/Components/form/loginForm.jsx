@@ -73,24 +73,22 @@ const LoginForm = () => {
           )}
         </div>
         <div className="flex flex-col">
-          <label className="text-md mb-3">Email address or username *</label>
+          <label className="text-md mb-3 font-bold">Email address or username *</label>
           <input
             {...register("username")}
             type="text"
-            placeholder="Enter your email or username"
-            className="w-full border p-3"
+            className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
           />
           {errors.username && (
             <p className="text-sm text-red-500">{errors.username.message}</p>
           )}
         </div>
         <div className="flex flex-col">
-          <label className="text-md mb-3">Password *</label>
+          <label className="text-md mb-3 font-bold">Password *</label>
           <input
             {...register("password")}
             type="password"
-            placeholder="Enter your password"
-            className="w-full border p-3"
+            className="w-full border p-3 bg-slate-200 ring-purple-500 focus:ring-2 focus:outline-none"
           />
           {errors.password && (
             <p className="text-sm text-red-500">{errors.password.message}</p>

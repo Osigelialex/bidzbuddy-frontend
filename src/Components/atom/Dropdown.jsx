@@ -5,10 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../../hooks/AuthProvider";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useNavigate } from "react-router-dom";
+import Dialog from "./Dialog";
+import { toast } from "sonner";
 import { CiLogout } from "react-icons/ci";
 
-export default function BasicMenu({ title, role }) {
+export default function BasicMenu({ title }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const open = Boolean(anchorEl);
   const auth = useAuth();
   const navigate = useNavigate();
@@ -22,12 +25,26 @@ export default function BasicMenu({ title, role }) {
   };
 
   const logout = () => {
-    auth.logout();
-    navigate("/");
+    setOpenDialog(true);
   };
 
   return (
     <div>
+      {openDialog && (
+        <Dialog
+          title="Logout"
+          message="Are you sure you want to logout?"
+          callback={() => {
+            auth.logout();
+            navigate("/");
+            toast.success("Goodbye! See you soon.");
+          }}
+          onClose={() => {
+            setAnchorEl(null);
+            setOpenDialog(false)
+          }}
+        />
+      )}
       <Button
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"

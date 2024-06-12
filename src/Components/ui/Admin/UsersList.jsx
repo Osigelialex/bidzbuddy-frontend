@@ -9,6 +9,10 @@ const UsersList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios.get("/api/v1/users");
       setUsers(response.data);
@@ -19,7 +23,7 @@ const UsersList = () => {
   }, []);
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 font-saira">
       <div className="flex flex-col justify-between bg-white p-3 mx-1 align-middle">
         <h1 className="text-md font-semibold">
           <p>Users</p>

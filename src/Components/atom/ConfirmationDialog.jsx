@@ -60,21 +60,6 @@ export default function ConfirmationDialog({ data }) {
 
   return (
     <React.Fragment>
-      {/* render alert box */}
-      {/* {isConfirmationAlertOpen && !hasError && (
-        <ConfirmationSnackbar
-          message="Bidding Closed Successfully!"
-          severity="success"
-        />
-      )}
-
-      {isConfirmationAlertOpen && hasError && (
-        <ConfirmationSnackbar
-          message="An error occurred while closing bidding!"
-          severity="error"
-        />
-      )} */}
-
       {/* Actions */}
       <div className="flex items-center gap-3 align-middle">
         {data.biddingClosed === false && (
