@@ -6,6 +6,7 @@ import { RiAccountPinBoxLine } from "react-icons/ri";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/AuthProvider";
+import { MdOutlineRateReview } from "react-icons/md";
 
 const Sidebar = () => {
   const auth = useAuth();
@@ -64,6 +65,20 @@ const Sidebar = () => {
           </div>
         )}
 
+        <div
+          className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
+          style={{
+            backgroundColor: active === "reviews" ? "rgb(147, 51, 234)" : "",
+            color: active === "reviews" ? "white" : "",
+          }}
+          onClick={() => {
+            setActive("reviews");
+            navigate("/account/reviews");
+          }}
+        >
+          <MdOutlineRateReview size={20} className="mr-2 inline-block" />
+          <p>Review us</p>
+        </div>
         <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
           <CiSettings size={20} className="mr-2 inline-block" />
           <p>Settings</p>

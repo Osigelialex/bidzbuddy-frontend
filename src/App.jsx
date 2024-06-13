@@ -30,6 +30,7 @@ import CategoriesList from "./Components/ui/Admin/CategoryList";
 import UnapprovedList from "./Components/ui/Admin/Unapproved";
 import VerificationEmailSent from "./Pages/VerificationEmailSent";
 import EmailVerification from "./Pages/EmailVerification";
+import Review from "./Components/ui/Review";
 import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
           <Route path="overview" element={<Overview />} />
           <Route path="my-bids" element={<MyBids />} />
           <Route path="my-products" element={<MyProducts />} />
+          <Route path="reviews" element={<Review />} />
         </Route>
       </Route>
       <Route element={<AdminRoute />}>
