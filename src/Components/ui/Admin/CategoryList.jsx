@@ -28,10 +28,10 @@ const CategoryList = () => {
   }, [refresh]);
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 font-saira">
       <div className="flex flex-col bg-white p-3 mx-1 align-middle">
         <h1 className="text-lg font-semibold flex items-center align-middle gap-3">
-          <p>categories</p>
+          <p>Categories</p>
         </h1>
         <div className="text-xs flex items-center gap-3 align-middle text-gray-500">
           <p>{new Date().toJSON().slice(0, 10)}</p>

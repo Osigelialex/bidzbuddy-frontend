@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "../../config/axiosConfig";
 import CircularProgress from "@mui/material/CircularProgress";
 import Slider from '@mui/material/Slider';
+import Skeleton from '@mui/material/Skeleton';
 
 const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) => {
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const skeletons = Array(12).fill(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +23,16 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
   return (
     <div className="sm:col-span-3 border lg:flex hidden justify-start p-3 max-h-fit">
       {loading ? (
-        <div className="flex justify-center items-center h-96">
-          <CircularProgress />
+        <div className="flex flex-col gap-3">
+          {skeletons.map((_, index) => (
+            <Skeleton
+              key={index}
+              width={260}
+              height={50}
+              variant="rectangular"
+              className="container"
+            />
+          ))}
         </div>
       ) : (
         <div>

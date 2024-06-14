@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import axios from "../../config/axiosConfig";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const NewProductForm = () => {
   const [categories, setCategories] = useState([]);
+  const [duration, setDuration] = useState(1);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
+
   const verifyValidImage = () => {
-    const validImageTypes = ["image/png", "image/jpg", "image/jpeg"];
+    const validImageTypes = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
     if (image && validImageTypes.includes(image.type)) {
       return true;
     }
@@ -25,12 +31,14 @@ const NewProductForm = () => {
     formData.append("minimumBid", e.target.minimumBid.value);
     formData.append("condition", e.target.condition.value);
     formData.append("categoryId", e.target.category.value);
+    formData.append("duration", duration);
     formData.append("description", e.target.description.value);
     formData.append("productImage", image);
 
     try {
       await axios.post("/api/v1/products", formData);
       setLoading(false);
+      navigate("/waiting-approval");
     } catch (error) {
       setError(error.response.data.message);
       setLoading(false);
@@ -131,6 +139,25 @@ const NewProductForm = () => {
       </div>
 
       <div className="flex w-full flex-col">
+        <label className="text-sm font-bold" aria-label="Duration">
+          How long do you want your auction to last? <span className="text-red-500">*</span>
+        </label>
+        <select
+          id="duration"
+          className="w-full rounded-sm border border-gray-300 bg-white p-2"
+          onChange={(e) => setDuration(e.target.value)}
+          required
+        >
+          <option value={1}>1 day</option>
+          <option value={3}>3 days</option>
+          <option value={5}>5 days</option>
+          <option value={7}>7 days</option>
+          <option value={10}>10 days</option>
+          <option value={14}>14 days</option>
+        </select>
+      </div>
+
+      <div className="flex w-full flex-col">
         <label className="text-sm font-bold" aria-label="Product Description">
           Describe your product <span className="text-red-500">*</span>
         </label>
@@ -154,7 +181,7 @@ const NewProductForm = () => {
           htmlFor="image"
         >
           {image && verifyValidImage(image) ? (
-            <img src={URL.createObjectURL(image)} />
+            <img src={URL.createObjectURL(image)} className="w-48 h-48" />
           ) : (
             <AddPhotoAlternateIcon />
           )}

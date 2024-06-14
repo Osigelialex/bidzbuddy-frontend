@@ -20,7 +20,6 @@ const ProductInfo = ({
   winner,
   paid
 }) => {
-  console.log(winner, paid);
   const [amount, setAmount] = useState("");
 
   const auth = useAuth();
@@ -162,6 +161,7 @@ const ProductInfo = ({
               email={'osigelialex@gmail.com'}
               publicKey={"pk_test_42726b31137327bf7e1b529ca436aa9857794be7"}
               productId={id}
+              handleRefresh={handleRefresh}
             />
             <div className="flex gap-2 items-center align-middle mt-3">
               <img src="/visa-card.svg" />

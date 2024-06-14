@@ -29,6 +29,7 @@ const MyBids = () => {
       try {
         const response = await axios.get(`/api/v1/bids?winningBids=${checked}`);
         setUserBids(response.data);
+        console.log(response.data);
         setLoading(false);
       } catch (error) {
         console.error(error);

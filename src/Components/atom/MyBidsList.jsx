@@ -10,6 +10,7 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { tableCellClasses } from '@mui/material/TableCell';
 import Paper from "@mui/material/Paper";
 import getTimeDifference from "../../utils/getTimeDifference";
+import { useNavigate } from "react-router-dom";
 
 export default function MyBidsTable({ mybids }) {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -18,6 +19,8 @@ export default function MyBidsTable({ mybids }) {
       color: "#232323"
     },
   }));
+
+  const navigate = useNavigate();
 
   return (
     <TableContainer component={Paper} elevation={0} className="min-h-full">
@@ -52,7 +55,7 @@ export default function MyBidsTable({ mybids }) {
                 <span className="text-lg text-gray-500">{bid.productName}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <img src={bid.productImageUrl} className="w-12 h-12 rounded-full" />
+                <img src={bid.productImageUrl} className="w-12 h-12 rounded-full cursor-pointer" onClick={() => navigate(`/products/${bid.productId}`)}  />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 <span className="text-lg text-gray-500">₦ {formatCurrency(bid.bidAmount)}</span>
@@ -60,8 +63,10 @@ export default function MyBidsTable({ mybids }) {
               <StyledTableCell component="th" scope="row">
                 {bid.isWinningBid ? (
                   <span className="bg-green-100 text-green-500 rounded-lg py-1 px-2">Won</span>
+                ) : bid.productBiddingClosed ? (
+                  <span className="bg-red-100 text-red-500 rounded-lg py-1 px-2">Lost</span>
                 ) : (
-                  <span className="bg-yellow-100 text-yellow-500 rounded-lg py-1 px-2">Ongoing</span>
+                  <span className="bg-yellow-100 text-yellow-500 rounded-lg py-1 px-2">Active</span>
                 )}
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">

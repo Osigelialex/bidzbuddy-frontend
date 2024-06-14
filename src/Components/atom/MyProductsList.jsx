@@ -55,8 +55,8 @@ export default function MyProductsTable({ myproducts }) {
                 <span className="text-lg text-gray-500">{product.currentBid}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                {product.isBiddingClosed ? (
-                  <span className="bg-green-100 text-red-500 rounded-lg p-1 border border-red-500">closed</span>
+                {product.biddingClosed ? (
+                  <span className="bg-red-100 text-red-500 rounded-lg p-1 border border-red-500">closed</span>
                 ) : (
                   <span className="bg-green-100 text-green-500 rounded-lg p-1 border border-green-500">open</span>
                 )}

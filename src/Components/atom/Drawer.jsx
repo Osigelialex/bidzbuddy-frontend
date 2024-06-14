@@ -33,14 +33,14 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link to="/about">
+        <Link to="/how-it-works">
           <ListItem key="About us" disablePadding>
             <ListItemButton>
-              <ListItemText primary="About us" />
+              <ListItemText primary="How it works" />
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link to="/contact">
+        <Link to="/contact-us">
           <ListItem key="Contact" disablePadding>
             <ListItemButton>
               <ListItemText primary="Contact" />

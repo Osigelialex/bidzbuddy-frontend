@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { FaPencil } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
@@ -82,18 +82,18 @@ export default function CategoriesList({ data, handleRefresh }) {
 
       <form
         onSubmit={handleSubmit}
-        className="flex justify-start mb-5 w-1/3"
+        className="grid grid-cols-6 mb-5 w-1/3 min-h-12"
       >
         <input
           type="text"
-          placeholder="Category name"
+          placeholder="New category name"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
-          className="px-2 border w-60 outline-none hover:ring-2 hover:ring-purple-300"
+          className="px-2 border outline-none hover:ring-2 hover:ring-purple-300 col-span-5"
           required
         />
-        <button type="submit" className="bg-purple-500 p-2 text-white h-full">
-          <FaPlus size={20} />
+        <button type="submit" className="bg-purple-500 p-2 text-white h-full col-span-1 grid place-items-center">
+          <FaPlus size={28} />
         </button>
       </form>
 
@@ -114,10 +114,11 @@ export default function CategoriesList({ data, handleRefresh }) {
             className="flex items-center justify-between border bg-white p-3 align-middle"
           >
             <div className="flex gap-3">
+
               {row.name}
             </div>
 
-            <button className="bg-purple-200 p-2 text-purple-500">
+            <button className="p-2 text-purple-500">
               <FaPencil size={20} onClick={() => handleClick(row.name, row.id)} />
             </button>
           </li>

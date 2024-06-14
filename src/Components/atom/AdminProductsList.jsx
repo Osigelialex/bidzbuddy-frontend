@@ -45,7 +45,7 @@ export default function ProductsList({ data, handleRefresh }) {
 
   const deleteProduct = async () => {
     try {
-      await axios.patch(`api/v1/products/${selectedProductId}`);
+      await axios.delete(`api/v1/products/${selectedProductId}`);
       setIsDeleteProductDialog(false);
       handleRefresh();
       toast.success("Successfully Deleted the product");

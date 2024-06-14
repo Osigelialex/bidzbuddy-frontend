@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const AuthProvider = ({ children }) => {
       try {
         const response = await axios.get("/api/v1/auth/me");
         setUser(response.data);
+        setIsLoading(false);
       } catch (error) {
         if (error.response && error.response.status === 401) {
           logout();
@@ -62,7 +64,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, accessToken, loginAction, logout }}>
+    <AuthContext.Provider value={{ user, accessToken, isLoading, loginAction, logout }}>
       {children}
     </AuthContext.Provider>
   );

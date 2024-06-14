@@ -27,7 +27,9 @@ const Navbar = () => {
             <li className="text-md cursor-pointer font-medium">
               <Link to="/products">Auctions</Link>
             </li>
-            <li className="text-md cursor-pointer font-medium">About us</li>
+            <li className="text-md cursor-pointer font-medium">
+              <Link to="/how-it-works">How it works</Link>
+            </li>
             <li className="text-md cursor-pointer font-medium">
               <Link to="/contact-us">Contact</Link>
             </li>

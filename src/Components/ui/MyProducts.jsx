@@ -16,6 +16,7 @@ const MyProducts = () => {
       try {
         const response = await axios.get("/api/v1/products/user");
         setUserProducts(response.data);
+        console.log(response.data)
         setLoading(false);
       } catch (error) {
         console.error(error);

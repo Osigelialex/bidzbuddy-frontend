@@ -2,23 +2,15 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import getTimeDifference from "../../utils/getTimeDifference";
 
 const columns = [
   { field: "id", headerName: "ID", width: 50 },
   { field: "firstname", headerName: "FirstName", width: 200 },
   { field: "lastname", headerName: "LastName", width: 120 },
   { field: "username", headerName: "Username", width: 120 },
-  { field: "email", headerName: "Email", width: 200 },
-  {
-    headerName: "Actions",
-    width: 200,
-    renderCell: (cellValues) => {
-      return <div className="flex items-center gap-3 align-middle">
-        
-      </div>
-    },
-  },
+  { field: "email", headerName: "Email", width: 250 },
+  { field: "lastLogin", headerName: "Last Login", width: 200, renderCell: (cellValues) => (getTimeDifference(cellValues.value))},
 ];
 
 export default function ProductsList({ data }) {
@@ -29,8 +21,6 @@ export default function ProductsList({ data }) {
     row.username.toLowerCase().includes(query.toLowerCase()) ||
     row.lastname.toLowerCase().includes(query.toLowerCase())
   );
-
-  const navigate = useNavigate();
 
   const handleRowClick = (params) => {
     

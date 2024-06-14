@@ -29,7 +29,12 @@ import UsersList from "./Components/ui/Admin/UsersList";
 import CategoriesList from "./Components/ui/Admin/CategoryList";
 import UnapprovedList from "./Components/ui/Admin/Unapproved";
 import VerificationEmailSent from "./Pages/VerificationEmailSent";
+import ReviewsList from "./Components/ui/Admin/Reviews";
+import Transactions from "./Components/ui/Admin/Transactions";
+import WaitingProductApproval from "./Pages/WaitingProductApproval";
 import EmailVerification from "./Pages/EmailVerification";
+import OrderConfirmed from "./Pages/OrderConfirmed";
+import HowItWorks from "./Pages/HowItWorks";
 import Review from "./Components/ui/Review";
 import { Toaster } from "sonner";
 
@@ -42,8 +47,13 @@ const router = createBrowserRouter(
       <Route path="products" element={<Auctions />} />
       <Route path="products/:id" element={<AuctionDetail />} />
       <Route path="contact-us" element={<ContactUs />} />
+      <Route path="how-it-works" element={<HowItWorks />} />
       <Route path="link-sent" element={<VerificationEmailSent />} />
       <Route path="email-verification" element={<EmailVerification />} />
+      <Route path="waiting-approval" element={<WaitingProductApproval />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="order-confirmed" element={<OrderConfirmed />} />
+      </Route>
       <Route element={<PrivateRoute />}>
         <Route path="new-product" element={<NewProduct />} />
       </Route>
@@ -61,10 +71,12 @@ const router = createBrowserRouter(
       <Route element={<AdminRoute />}>
         <Route path="admin/*" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="transactions" element={<Transactions />} />
           <Route path="products" element={<ProductsList />} />
           <Route path="users" element={<UsersList />} />
           <Route path="categories" element={<CategoriesList />} />
           <Route path="unapproved" element={<UnapprovedList />} />
+          <Route path="reviews" element={<ReviewsList />} />
         </Route>
       </Route>
     </Route>,

@@ -40,6 +40,7 @@ const Review = () => {
           <TextareaAutosize
             minRows={10}
             minLength={10}
+            maxLength={800}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className="bg-gray-100 w-full hover:ring-2 hover:ring-purple-500 outline-none p-3"

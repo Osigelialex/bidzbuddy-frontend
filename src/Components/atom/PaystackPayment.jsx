@@ -2,8 +2,11 @@ import React from "react";
 import { PaystackButton } from "react-paystack";
 import axios from "../../config/axiosConfig";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
-const PaystackPayment = ({ email, amount, publicKey, productId }) => {
+const PaystackPayment = ({ email, amount, publicKey, productId, handleRefresh }) => {
+  const navigate = useNavigate();
+
   const config = {
     email: email,
     amount: amount,
@@ -14,7 +17,7 @@ const PaystackPayment = ({ email, amount, publicKey, productId }) => {
   const handlePaystackSuccessAction = async (paystackReference) => {
     const payload = {
       productId,
-      amount,
+      amount: amount / 100,
       paystackReference: paystackReference.reference
     }
 
@@ -25,6 +28,8 @@ const PaystackPayment = ({ email, amount, publicKey, productId }) => {
       try {
         await axios.post("/api/v1/transactions", payload);
         toast.success("Payment Confirmed!");
+        handleRefresh();
+        navigate("/order-confirmed");
         break;
       } catch (error) {
         retries++;

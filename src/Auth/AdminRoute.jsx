@@ -3,6 +3,11 @@ import { useAuth } from "../hooks/AuthProvider";
 
 const AdminRoute = () => {
   const auth = useAuth();
+
+  if (auth.isLoading) {
+    return null;
+  }
+
   if (!auth.user || !auth.user.role === "ADMIN") {
     return <Navigate to="/" />;
   }

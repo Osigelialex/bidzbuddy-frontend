@@ -5,8 +5,9 @@ import { GiShoppingCart } from "react-icons/gi";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
-import { RiAuctionLine } from "react-icons/ri";
+import { VscPreview } from "react-icons/vsc";
 import { useState } from "react";
+import { GrTransaction } from "react-icons/gr";
 import { MdOutlinePendingActions } from "react-icons/md";
 
 const AdminSidebar = () => {
@@ -22,16 +23,25 @@ const AdminSidebar = () => {
         <Link to="/admin/dashboard">
           <li
             onClick={() => setSelectedItem("Dashboard")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 rounded-sm px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Dashboard" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 rounded-sm px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Dashboard" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
           >
             <LuLayoutDashboard size={16} />
             <p>Dashboard</p>
           </li>
         </Link>
+        <Link to="/admin/transactions">
+          <li
+            onClick={() => setSelectedItem("Transactions")}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Transactions" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+          >
+            <GrTransaction size={16} />
+            <p>Transactions</p>
+          </li>
+        </Link>
         <Link to="/admin/products">
           <li
             onClick={() => setSelectedItem("Products")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Products" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Products" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
           >
             <GiShoppingCart size={16} />
             <p>Products</p>
@@ -40,7 +50,7 @@ const AdminSidebar = () => {
         <Link to="/admin/unapproved">
           <li
             onClick={() => setSelectedItem("Unapproved")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Unapproved" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Unapproved" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
           >
             <MdOutlinePendingActions size={16} />
             <p>Unapproved</p>
@@ -49,31 +59,32 @@ const AdminSidebar = () => {
         <Link to="/admin/users">
           <li
             onClick={() => setSelectedItem("Users")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Users" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Users" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
           >
             <FaRegUser size={16} />
             <p>Users</p>
           </li>
         </Link>
-        <Link to="">
-          <li
-            onClick={() => setSelectedItem("Bids")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Bids" ? "border-r-4 border-purple-500" : ""}`}>
-            <RiAuctionLine size={16} />
-            <p>Bids</p>
-          </li>
-        </Link>
         <Link to="/admin/categories">
           <li
             onClick={() => setSelectedItem("Categories")}
-            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-3 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Categories" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Categories" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
           >
             <BiCategoryAlt size={16} />
             <p>Categories</p>
           </li>
         </Link>
+        <Link to="/admin/reviews">
+          <li
+            onClick={() => setSelectedItem("Reviews")}
+            className={`text-md flex cursor-pointer text-sm items-center gap-2 px-1 py-2 align-middle font-medium hover:border-r-4 hover:border-purple-500 hover:text-purple-800 ${selectedItem === "Reviews" ? "border-r-4 border-purple-500 text-purple-800" : ""}`}
+          >
+            <VscPreview size={16} />
+            <p>Reviews</p>
+          </li>
+        </Link>
       </ul>
-      <li className="text-md mb-3 flex text-sm cursor-pointer items-center gap-2 border-t px-1 py-1 align-middle font-medium">
+      <li className="text-md mb-3 flex text-sm cursor-pointer items-center gap-2 border-t px-1 py-2 align-middle font-medium">
         <CiLogout size={16} />
         <Link to="/">Back to Site</Link>
       </li>

@@ -41,12 +41,12 @@ export default function UnapprovedProductsList({ data, handleRefresh }) {
     }
   };
 
-  const deleteProduct = async () => {
+  const rejectProduct = async () => {
     try {
-      await axios.patch(`api/v1/products/${selectedProductData.id}`);
+      await axios.patch(`api/v1/products/reject/${selectedProductData.id}`);
       setIsDeleteProductDialog(false);
       handleRefresh();
-      toast.success("Successfully Deleted the product");
+      toast.success("Project has been rejected successfully");
     } catch (error) {
       setIsCloseBiddingDialog(false);
       if (error.response) {
@@ -178,10 +178,9 @@ export default function UnapprovedProductsList({ data, handleRefresh }) {
 
       {isDeleteProductDialog && (
         <Dialog
-          title={`Are you sure you want to reopen bidding for "${selectedProductName}" ?`}
-          message={`By clicking continue, you will reopen the auctioning process for "${selectedProductName}"
-           and buyers would be able to bid it again.`}
-          color={"purple"}
+          title={`Are you sure you want to reject the "${selectedProductData.name}" ?`}
+          message={`By clicking continue, you will reject "${selectedProductData.name}" from the product creation request and delete the product, are you sure you want to continue?`}
+          callback={rejectProduct}
           onClose={() => setIsReopenBiddingDialog(false)}
         />
       )}
