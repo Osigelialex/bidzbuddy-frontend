@@ -5,7 +5,7 @@ import { CiLock } from "react-icons/ci";
 import ProductDetailCard from "../atom/ProductDetailCard";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { GiPartyPopper } from "react-icons/gi";
-import PaystackPayment from "../atom/PaystackPayment";
+import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "sonner";
 
 const ProductInfo = ({
@@ -21,6 +21,7 @@ const ProductInfo = ({
   paid
 }) => {
   const [amount, setAmount] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const auth = useAuth();
 
@@ -48,6 +49,30 @@ const ProductInfo = ({
 
     setAmount("");
   };
+
+
+  const handleCheckout = async (e) => {
+    setLoading(true);
+    const payload = {
+      email: auth.user.email,
+      amount: currentBid,
+      productId: id
+    }
+
+    try {
+      const response = await axios.post(`/api/v1/paystack`, payload);
+      setLoading(false);
+      window.location.href = response.data;
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else if (error.request) {
+        toast.error("Network error, try again");
+      } else {
+        toast.error("An error occurred, try again");
+      }
+    }
+  }
 
   return (
     <div className="mb-10 mt-28 flex flex-wrap justify-center gap-20 p-3 text-gray-950 sm:mx-20 sm:mb-32 sm:flex-nowrap sm:gap-8">
@@ -156,13 +181,10 @@ const ProductInfo = ({
         {/* proceed to payment */}
         {(winner && !paid) && (
           <>
-            <PaystackPayment
-              amount={currentBid * 100}
-              email={'osigelialex@gmail.com'}
-              publicKey={"pk_test_42726b31137327bf7e1b529ca436aa9857794be7"}
-              productId={id}
-              handleRefresh={handleRefresh}
-            />
+            <button onClick={handleCheckout} className="w-1/2 mt-5 rounded-md bg-purple-900 p-3 text-white">
+              {!loading ? "Proceed to Payment" : <CircularProgress size={24} color="inherit" />}
+            </button>
+
             <div className="flex gap-2 items-center align-middle mt-3">
               <img src="/visa-card.svg" />
               <img src="/mastercard.svg" />

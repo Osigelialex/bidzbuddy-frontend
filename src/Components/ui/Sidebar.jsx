@@ -29,7 +29,7 @@ const Sidebar = () => {
           }}
         >
           <RiAccountPinBoxLine size={20} className="mr-2 inline-block" />
-          Overview
+          My Profile
         </div>
         {auth.user.role === "SELLER" && (
           <div
@@ -79,7 +79,17 @@ const Sidebar = () => {
           <MdOutlineRateReview size={20} className="mr-2 inline-block" />
           <p>Review us</p>
         </div>
-        <div className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white">
+        <div
+          className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
+          style={{
+            backgroundColor: active === "settings" ? "rgb(147, 51, 234)" : "",
+            color: active === "settings" ? "white" : "",
+          }}
+          onClick={() => {
+            setActive("settings");
+            navigate("/account/settings");
+          }}
+        >
           <CiSettings size={20} className="mr-2 inline-block" />
           <p>Settings</p>
         </div>

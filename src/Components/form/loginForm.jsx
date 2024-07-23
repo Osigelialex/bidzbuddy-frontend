@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (auth.user) {
-      navigate(-1);
+      navigate("/");
     }
   }, []);
 

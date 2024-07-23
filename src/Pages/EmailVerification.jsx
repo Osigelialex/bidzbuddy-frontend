@@ -65,7 +65,7 @@ const EmailVerification = () => {
             <h1 className="text-2xl">Email verification failed</h1>
             <p className="text-md w-4/5 text-center">Looks like the email verification link is invalid or has expired. Not to worry, we can send the link again</p>
             <button className="text-white bg-purple-500 px-3 py-2" onClick={handleResend}>Resend Verification link</button>
-            <Link to="/login" className="text-purple-500">Back to login</Link>
+            <Link to="/" className="text-purple-500">Back to home</Link>
           </div>
         </div>
       ) : (

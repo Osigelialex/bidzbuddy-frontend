@@ -25,11 +25,11 @@ export default function Congratulations({ username, productName, productImage })
           {`Congratulations ${username}, you won the auction on the ${productName}!!`}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" className='flex justify-between'>
+          <div className='flex justify-between'>
             <img src="/congratulations.gif" />
-            <img src={productImage} className='w-30 h-30' />
+            <img src={productImage} className='w-56' />
             <img src="/congratulations.gif" />
-          </DialogContentText>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} style={{ color: "purple" }} autoFocus>

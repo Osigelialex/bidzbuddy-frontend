@@ -13,7 +13,7 @@ const Account = () => {
   return (
     <>
       <Navbar />
-      <div className="md:grid sm:min-h-screen gap-2 bg-gray-100 px-5 py-10 md:grid-cols-12 font-saira">
+      <div className="md:grid sm:min-h-screen gap-2 bg-gray-100 px-5 py-10 md:grid-cols-12">
         <Sidebar />
         <main className="col-span-9">
           <Outlet />

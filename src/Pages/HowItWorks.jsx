@@ -18,7 +18,7 @@ const HowItWorks = () => {
               How to Bid
             </h1>
             <p className="text-lg leading-10">
-              To bid on an item, you must first register an account with us. Once you have an account, you can place a bid on any item that is currently up for auction. You can place a bid by clicking on the "Bid Now" button on the item page. You can also set a maximum bid amount, and our system will automatically place bids on your behalf up to that amount.
+              To bid on an item, you must first register an account with us. Once you have an account, you can place a bid on any item that is currently up for auction. You can place a bid by clicking on the "Place a bid" button on the specified item. You can also set a maximum bid amount, and our system will automatically place bids on your behalf up to that amount.
             </p>
           </div>
           <div className="sm:grid place-items-center hidden">
@@ -68,7 +68,7 @@ const HowItWorks = () => {
               How to Win
             </h1>
             <p className="text-lg leading-10">
-              To win an auction, you must have the highest bid when the auction ends. If you have the highest bid, you will be notified via email and on the website. You will then have a set amount of time to complete the purchase and pay for the item. If you do not complete the purchase within the specified time frame, the item will be offered to the next highest bidder.
+              To win an auction, you must have the highest bid when the auction ends. If you have the highest bid, you will be notified via email and on the website. You will then have a set amount of time to complete the purchase and pay for the item. If you do not complete the purchase within the specified time frame, the item will be offered to the next highest bidder and could lead to a potential ban on your account.
             </p>
           </div>
         </div>
