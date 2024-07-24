@@ -44,6 +44,7 @@ const Signup = () => {
       navigate("/link-sent");
       reset();
     } catch (error) {
+      console.log(error);
       if (error.response) {
         setError("root", {
           message: error.response.data.message,
