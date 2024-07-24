@@ -18,7 +18,10 @@ const schema = z.object({
   email: z.string().email(),
   password: z
     .string()
-    .min(6, { message: "Password must be 6 characters or more" }),
+    .min(6, { message: "Password must be 8 characters or more" })
+    .regex(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$/,
+      { message: "Password should contain at least one digit, one lowercase letter, one uppercase letter, and should not contain any whitespace" }),
 });
 
 const Signup = () => {
@@ -37,22 +40,26 @@ const Signup = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("/api/v1/auth/signup", data);
-      console.log(response.data);
       Cookies.set("email", response.data);
       navigate("/link-sent");
       reset();
     } catch (error) {
-      console.error(error);
       if (error.response) {
         setError("root", {
           message: error.response.data.message,
         });
+        if (error.response.data.errors) {
+          error.response.data.errors.forEach((error) => {
+            setError(error.field, {
+              message: error.message,
+            });
+          });
+        }
       } else if (error.request) {
         setError("root", {
           message: "Oops! Something went wrong, check your connection",
         });
       } else {
-        console.error(error);
         setError("root", {
           message: "Something went wrong, check your connection and try again",
         });
