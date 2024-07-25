@@ -9,7 +9,7 @@ const Hero = () => {
         <p className="mb-3 text-lg font-bold text-purple-600 sm:text-xl">
           Welcome to BidzBuddy
         </p>
-        <h2 className="mb-4 text-3xl font-extrabold leading-tight sm:text-5xl">
+        <h2 className="mb-4 text-3xl font-extrabold leading-tight sm:text-7xl">
           Bid smart, Elevate your experience.
         </h2>
         <p className="mt-4 text-sm text-slate-600 sm:text-base">
