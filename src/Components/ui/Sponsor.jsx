@@ -1,6 +1,6 @@
 const News = () => {
   return (
-    <section className="py-16 px-20">
+    <section className="sm:py-16 sm:px-20 my-20">
       <div className="px-3 sm:text-center">
         <h1 className="px-2 text-xl font-bold sm:text-3xl mb-8">
           Trusted By 500+ Businesses

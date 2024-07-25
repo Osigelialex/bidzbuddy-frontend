@@ -2,7 +2,7 @@ import ClientCard from "../atom/ClientCard";
 
 const Clients = () => {
   return (
-    <section className="py-10">
+    <section className="py-10 mt-20">
       <div className="px-5 text-justify sm:text-center">
         <h1 className="text-xl font-bold sm:text-3xl">Our Happy Clients</h1>
       </div>

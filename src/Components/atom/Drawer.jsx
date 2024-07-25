@@ -58,7 +58,7 @@ export default function TemporaryDrawer() {
         <Link to="/login">
           <ListItem key="Login" disablePadding>
             <ListItemButton>
-              <ListItemText primary="Login" />
+              <ListItemText primary="My Account" />
             </ListItemButton>
           </ListItem>
         </Link>
