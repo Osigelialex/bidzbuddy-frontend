@@ -37,10 +37,11 @@ const ProductCard2 = ({
           >
             {condition.toLowerCase() === "new" ? "New" : "Used"}
           </div>
-          <div className="grid max-h-48 min-h-48 place-items-center overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm sm:max-h-52 sm:min-h-52">
+          <div className="grid max-h-60 min-h-60 place-items-center overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm sm:max-h-60 sm:min-h-60">
             <img
               src={imageUrl}
-              className="ease h-46 w-46 bg-no-repeat object-cover transition duration-500 hover:scale-125"
+              className="ease bg-no-repeat object-contain transition duration-500 hover:scale-125"
+              alt="Image"
             />
           </div>
           <div className="m-0 flex flex-col justify-between gap-2">
