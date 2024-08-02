@@ -26,7 +26,7 @@ export default function ProductViewDialog({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <div className="grid font-saira sm:grid-cols-12">
+        <div className="grid font-poppins sm:grid-cols-12">
           <div className="col-span-6">
             <img
               src={productImageUrl}
@@ -34,7 +34,7 @@ export default function ProductViewDialog({
               className="h-96 w-full object-fill"
             />
           </div>
-          <div className="col-span-6 flex flex-col justify-between p-2 font-saira">
+          <div className="col-span-6 flex flex-col justify-between p-2 font-poppins">
             <div>
               <h1
                 id="alert-dialog-title"

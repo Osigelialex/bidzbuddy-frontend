@@ -18,6 +18,7 @@ const ProductInfo = ({
   closed,
   handleRefresh,
   winner,
+  condition,
   paid
 }) => {
   const [amount, setAmount] = useState("");
@@ -85,12 +86,13 @@ const ProductInfo = ({
       <div>
         <h1 className="text-2xl font-bold">{name}</h1>
         <p className="mt-3 sm:text-md">
-          <span className="text-2xl font-medium text-purple-500">
+          <span className="text-2xl font-medium">
             ₦ {formatCurrency(currentBid)}
           </span>
         </p>
-        <p className="text-md mt-2 leading-7">{description}</p>
+        <p className="text-md mt-2 leading-7 text-gray-600">{description}</p>
         <hr className="my-10" />
+        <p className="text-gray-600">Condition: {condition}</p>
         <div className="mt-7 w-full rounded-md border p-5">
           {closed && !winner ? (
             <div className="flex items-center gap-2 align-middle">

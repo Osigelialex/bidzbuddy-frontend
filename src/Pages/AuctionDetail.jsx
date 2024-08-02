@@ -78,6 +78,7 @@ const AuctionDetail = () => {
             remainingTime={product.remainingTime}
             closed={product.biddingClosed}
             handleRefresh={handleRefresh}
+            condition={product.condition}
             winner={winner}
             paid={product.paid}
           />
@@ -87,7 +88,7 @@ const AuctionDetail = () => {
           ) : (
             <div className="mx-auto mb-7 grid place-items-center gap-3 text-gray-600">
               <img src="/login-first.gif" alt="login first" className="w-52" />
-              <p className="font-saira text-lg">
+              <p className="font-poppins text-lg">
                 Bidding History is only available after login
               </p>
             </div>

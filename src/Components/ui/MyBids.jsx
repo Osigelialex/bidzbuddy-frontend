@@ -57,10 +57,10 @@ const MyBids = () => {
       ) : (
         <div className="min-h-full max-w-full overflow-auto md:col-span-9">
           <div className="flex items-center justify-between bg-white p-3">
-            <h1 className="font-saira text-xl">My Bids</h1>
+            <h1 className="font-poppins text-xl">My Bids</h1>
             <div className="flex items-center gap-2">
               <GrTrophy size={20} className="text-[#00e400]" />
-              <span className="font-saira text-lg">Show Winning</span>
+              <span className="font-poppins text-lg">Show Winning</span>
               <ThemeProvider theme={theme}>
                 <Switch
                   checked={checked}

@@ -59,7 +59,7 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
           </ListItem>
         ))}
         <div className="p-4">
-          <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
+          <h1 className="text-xl mb-5 font-bold font-poppins">Minimum Bid</h1>
           <Slider
             defaultValue={5000}
             getAriaValueText={(value) => `₦${value}`}
@@ -71,7 +71,7 @@ export default function CategoryDrawer({ changeCategory, changeMinimumBid, chang
             valueLabelDisplay="on"
           />
           <p className="text-gray-500">5,000 - 10,000,000</p>
-          <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
+          <h1 className="text-xl mb-5 font-bold font-poppins mt-5">Condition</h1>
           <select
             className="w-full border border-gray-300 rounded-md p-2"
             onChange={(e) => changeCondition(e.target.value)}

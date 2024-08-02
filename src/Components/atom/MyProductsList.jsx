@@ -23,19 +23,19 @@ export default function MyProductsTable({ myproducts }) {
         <TableHead>
           <TableRow>
             <TableCell>
-              <span className="text-lg font-saira">Product Name</span>
+              <span className="text-lg font-poppins">Product Name</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Product Image</span>
+              <span className="text-lg font-poppins">Product Image</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Current Bid</span>
+              <span className="text-lg font-poppins">Current Bid</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Status</span>
+              <span className="text-lg font-poppins">Status</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Condition</span>
+              <span className="text-lg font-poppins">Condition</span>
             </TableCell>
           </TableRow>
         </TableHead>

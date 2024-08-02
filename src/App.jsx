@@ -90,7 +90,7 @@ function App() {
   }, []);
 
   return (
-    <div className="font-inter">
+    <div className="font-poppins">
       <Toaster
         richColors
         position="top-center"

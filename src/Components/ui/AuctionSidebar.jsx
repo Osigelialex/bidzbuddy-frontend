@@ -36,7 +36,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
         </div>
       ) : (
         <div>
-          <h1 className="text-xl font-bold font-saira">Categories</h1>
+          <h1 className="text-xl font-bold font-poppins">Categories</h1>
           <ul className="my-5">
             <li
               className="text-gray-500 hover:border-l-4 hover:border-purple-500 w-full px-3 py-3 cursor-pointer"
@@ -54,7 +54,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
               </li>
             ))}
           </ul>
-          <h1 className="text-xl mb-5 font-bold font-saira">Minimum Bid</h1>
+          <h1 className="text-xl mb-5 font-bold font-poppins">Minimum Bid</h1>
 
           <Slider
             defaultValue={5000}
@@ -67,7 +67,7 @@ const AuctionSidebar = ({ changeCategory, changeMinimumBid, changeCondition }) =
             valueLabelDisplay="on"
           />
           <p className="text-gray-500 text-sm">5,000 - 10,000,000</p>
-          <h1 className="text-xl mb-5 font-bold font-saira mt-5">Condition</h1>
+          <h1 className="text-xl mb-5 font-bold font-poppins mt-5">Condition</h1>
           <select
             className="w-full border border-gray-300 rounded-md p-2"
             onChange={(e) => changeCondition(e.target.value)}

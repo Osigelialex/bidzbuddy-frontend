@@ -35,7 +35,7 @@ const Review = () => {
     <div className="min-h-full max-w-full overflow-auto md:col-span-9">
       <div className="bg-white p-3">
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-          <h1 className="font-saira text-lg">How has your experience with BidzBuddy been?</h1>
+          <h1 className="font-poppins text-lg">How has your experience with BidzBuddy been?</h1>
           <StarReview size={5} updateStars={updateStars} />
           <TextareaAutosize
             minRows={10}

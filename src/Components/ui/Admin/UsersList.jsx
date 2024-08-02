@@ -23,7 +23,7 @@ const UsersList = () => {
   }, []);
 
   return (
-    <div className="pb-10 font-saira">
+    <div className="pb-10 font-poppins">
       <div className="flex flex-col justify-between bg-white p-3 mx-1 align-middle">
         <h1 className="text-md font-semibold">
           <p>Users</p>

@@ -9,7 +9,7 @@ import { formatCurrency } from "../../utils/formatCurrency";
 const BiddingList = ({ biddingList }) => {
   if (biddingList.length === 0) {
     return (
-      <div className="mb-3 grid place-items-center font-saira text-gray-500">
+      <div className="mb-3 grid place-items-center font-poppins text-gray-500">
         <img src="/no-bids-found.gif" alt="no bids found" className="w-60" />
         <h1 className="text-2xl font-semibold">No Bidders Yet!</h1>
       </div>
@@ -19,7 +19,7 @@ const BiddingList = ({ biddingList }) => {
   return (
     <div className="m-5 max-h-96 overflow-auto border sm:mx-auto sm:w-5/6">
       <div className="border-b bg-purple-950 p-3 text-center text-white w-full">
-        <h1 className="font-semibold font-saira">Bidding History</h1>
+        <h1 className="font-semibold font-poppins">Bidding History</h1>
       </div>
       <Table aria-label="simple table">
         <TableHead>

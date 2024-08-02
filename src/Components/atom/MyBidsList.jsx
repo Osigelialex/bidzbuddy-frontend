@@ -28,19 +28,19 @@ export default function MyBidsTable({ mybids }) {
         <TableHead>
           <TableRow>
             <TableCell>
-              <span className="text-lg font-saira">Product Name</span>
+              <span className="text-lg font-poppins">Product Name</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Product Image</span>
+              <span className="text-lg font-poppins">Product Image</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Amount (NGN)</span>
+              <span className="text-lg font-poppins">Amount (NGN)</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Status</span>
+              <span className="text-lg font-poppins">Status</span>
             </TableCell>
             <TableCell>
-              <span className="text-lg font-saira">Time</span>
+              <span className="text-lg font-poppins">Time</span>
             </TableCell>
           </TableRow>
         </TableHead>

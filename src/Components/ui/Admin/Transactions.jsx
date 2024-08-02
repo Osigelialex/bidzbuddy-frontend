@@ -33,7 +33,7 @@ const Transactions = () => {
   }, []);
 
   return (
-    <div className="pb-10 font-saira">
+    <div className="pb-10 font-poppins">
       <div className="mx-1 flex flex-col bg-white p-3 align-middle">
         <h1 className="font-semibold">Transactions History</h1>
         <div className="flex items-center gap-3 align-middle text-gray-500 text-xs">

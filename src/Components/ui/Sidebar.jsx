@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex w-full flex-col gap-3 rounded-md font-saira text-xl text-gray-500 md:col-span-3 mb-5">
+      <div className="flex w-full flex-col gap-3 rounded-md font-poppins text-xl text-gray-500 md:col-span-3 mb-5">
         <div
           className="flex cursor-pointer items-center gap-2 bg-white p-3 text-left align-middle hover:bg-purple-600 hover:text-white"
           style={{

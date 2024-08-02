@@ -14,7 +14,7 @@ const AdminSidebar = () => {
   const [selectedItem, setSelectedItem] = useState("Dashboard");
 
   return (
-    <div className="h-screen fixed top-0 left-0 w-48 col-span-2 hidden flex-col justify-between shadow-sm px-3 sm:flex font-saira">
+    <div className="h-screen fixed top-0 left-0 w-48 col-span-2 hidden flex-col justify-between shadow-sm px-3 sm:flex font-poppins">
       <ul className="mt-3 flex flex-col gap-4 text-gray-500">
         <li className="mx-auto flex items-center align-middle w-full cursor-pointer gap-2 rounded-md border border-purple-500 bg-purple-200 p-3 text-lg font-bold text-purple-500">
           <RiAuctionFill size={20} />

@@ -8,7 +8,8 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        saira: ["Saira", "sans-serif"]
+        poppins: ["poppins", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"]
       },
       spacing: {
         '128': '28rem',

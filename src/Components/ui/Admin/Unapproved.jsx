@@ -28,7 +28,7 @@ const UnapprovedList = () => {
   }, [refresh]);
 
   return (
-    <div className="pb-10 font-saira">
+    <div className="pb-10 font-poppins">
       <div className="flex flex-col justify-between bg-white p-3 mx-1 align-middle">
         <div className="flex gap-2 items-center align-middle text-md font-semibold">
           <p>Unapproved Products</p>

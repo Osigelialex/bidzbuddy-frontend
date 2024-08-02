@@ -25,7 +25,7 @@ const Reviews = () => {
   }, []);
 
   return (
-    <div className="pb-10 font-saira">
+    <div className="pb-10 font-poppins">
       <div className="flex flex-col bg-white p-3 mx-1 align-middle">
         <h1 className="text-lg font-semibold flex items-center align-middle gap-3">
           <p>Reviews</p>

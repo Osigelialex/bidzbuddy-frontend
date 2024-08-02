@@ -50,7 +50,7 @@ export default function CategoriesList({ data, handleRefresh }) {
   }
 
   return (
-    <div className="p-2 font-saira">
+    <div className="p-2 font-poppins">
       {addCategoryDialog && (
         <Dialog
           title="Add Category"
