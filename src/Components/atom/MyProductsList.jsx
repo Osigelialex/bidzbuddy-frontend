@@ -49,7 +49,7 @@ export default function MyProductsTable({ myproducts }) {
                 <span className="text-lg text-gray-500">{product.name}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <img src={product.productImageUrl} className="w-12 h-12 rounded-full" />
+                <img loading="lazy" src={product.productImageUrl} className="w-12 h-12 rounded-full" />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 <span className="text-lg text-gray-500">{product.currentBid}</span>

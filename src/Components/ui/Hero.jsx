@@ -26,6 +26,7 @@ const Hero = () => {
       </div>
       <div className="flex justify-center items-center lg:justify-end mt-8 lg:mt-0">
         <img
+          loading="lazy"
           src="/bidding-image.avif"
           className="w-full h-full sm:w-64 sm:h-64 lg:w-[30rem] lg:h-[30rem] object-cover sm:rounded-full"
           alt="Bidding"

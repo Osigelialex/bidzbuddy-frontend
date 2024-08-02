@@ -10,7 +10,7 @@ const BiddingList = ({ biddingList }) => {
   if (biddingList.length === 0) {
     return (
       <div className="mb-3 grid place-items-center font-poppins text-gray-500">
-        <img src="/no-bids-found.gif" alt="no bids found" className="w-60" />
+        <img src="/no-bids-found.gif" alt="no bids found" className="w-60" loading="lazy" />
         <h1 className="text-2xl font-semibold">No Bidders Yet!</h1>
       </div>
     );

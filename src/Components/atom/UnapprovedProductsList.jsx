@@ -70,6 +70,7 @@ export default function UnapprovedProductsList({ data, handleRefresh }) {
       sortable: false,
       renderCell: (params) => (
         <img
+          loading="lazy"
           src={params.value}
           alt="Product"
           className="h-10 w-10 cursor-pointer rounded-full"

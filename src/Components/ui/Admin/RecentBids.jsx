@@ -62,7 +62,7 @@ export default function MyBidsTable({ recentBids }) {
                 <span className="text-md text-gray-500">{bid.productName}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <img src={bid.productImageUrl} className="w-10 h-10 rounded-full" />
+                <img loading="lazy" src={bid.productImageUrl} className="w-10 h-10 rounded-full" />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 <span className="text-md text-gray-500">₦ {formatCurrency(bid.bidAmount)}</span>

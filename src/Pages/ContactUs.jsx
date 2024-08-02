@@ -11,7 +11,7 @@ const ContactUs = () => {
 
       <div className='grid sm:grid-cols-2 place-items-center sm:m-10'>
         <div className='p-5'>
-          <img src="/contactus.bmp" />
+          <img loading='lazy' src="/contactus.bmp" />
         </div>
         <ContactUsForm />
       </div>

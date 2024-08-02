@@ -43,7 +43,7 @@ const LiveAuction = () => {
 
       {(!loading && products.length === 0) && (
         <div className="grid place-items-center my-7 text-gray-500">
-          <img src="/no-bids-found.gif" className="w-80 h-80" />
+          <img loading="lazy" src="/no-bids-found.gif" className="w-80 h-80" />
           <p className="text-lg">No auctions found</p>
         </div>
       )}

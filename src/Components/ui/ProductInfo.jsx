@@ -187,8 +187,8 @@ const ProductInfo = ({
             </button>
 
             <div className="flex gap-2 items-center align-middle mt-3">
-              <img src="/visa-card.svg" />
-              <img src="/mastercard.svg" />
+              <img loading="lazy" src="/visa-card.svg" />
+              <img loading="lazy" src="/mastercard.svg" />
             </div>
           </>
         )}

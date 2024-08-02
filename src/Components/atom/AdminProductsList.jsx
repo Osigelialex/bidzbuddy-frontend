@@ -95,6 +95,7 @@ export default function ProductsList({ data, handleRefresh }) {
           src={params.value}
           alt="Product"
           onClick={() => handleClick(params)}
+          loading="lazy"
           className="h-10 w-10 cursor-pointer rounded-full"
         />
       ),

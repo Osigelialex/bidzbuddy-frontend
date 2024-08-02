@@ -9,7 +9,7 @@ const HowItWorks = () => {
       <Banner title="How It Works" />
       <div className="sm:mx-14 mx-5 mt-10">
         <div className="grid place-items-center sm:hidden mt-14">
-          <img src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
+          <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
         </div>
         <div className="pt-6 pb-10 grid sm:grid-cols-2">
           <div>
@@ -22,13 +22,13 @@ const HowItWorks = () => {
             </p>
           </div>
           <div className="sm:grid place-items-center hidden">
-            <img src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
+            <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
         </div>
 
         <div className="py-10 grid sm:grid-cols-2">
           <div className="sm:grid place-items-center hidden">
-            <img src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
+            <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
           <div>
             <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">
@@ -54,13 +54,13 @@ const HowItWorks = () => {
             </p>
           </div>
           <div className="sm:grid place-items-center hidden">
-            <img src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
+            <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
         </div>
 
         <div className="py-10 grid sm:grid-cols-2">
           <div className="sm:grid place-items-center hidden">
-            <img src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
+            <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
           <div>
             <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">

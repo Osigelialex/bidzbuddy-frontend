@@ -87,7 +87,7 @@ const AuctionDetail = () => {
             <BiddingList biddingList={biddingList} />
           ) : (
             <div className="mx-auto mb-7 grid place-items-center gap-3 text-gray-600">
-              <img src="/login-first.gif" alt="login first" className="w-52" />
+              <img loading="lazy" src="/login-first.gif" alt="login first" className="w-52" />
               <p className="font-poppins text-lg">
                 Bidding History is only available after login
               </p>

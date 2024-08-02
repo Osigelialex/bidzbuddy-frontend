@@ -103,7 +103,7 @@ export default function CategoriesList({ data, handleRefresh }) {
         </div>
         {filteredRows.length == 0 && (
           <div className="grid place-items-center">
-            <img src="/no-bids-found.gif" />
+            <img src="/no-bids-found.gif" loading="lazy" />
             <p>Category not found</p>
           </div>
         )}

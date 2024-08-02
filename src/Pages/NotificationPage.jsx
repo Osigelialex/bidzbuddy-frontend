@@ -81,7 +81,7 @@ const NotificationPage = () => {
         {/* No notifications found */}
         {!loading && notifications.length === 0 && (
           <div className="grid place-items-center">
-            <img src="/no-bids-found.gif" />
+            <img loading="lazy" src="/no-bids-found.gif" />
             <p className="text-gray-500">Wow, such empty</p>
           </div>
         )}

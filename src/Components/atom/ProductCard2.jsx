@@ -39,6 +39,7 @@ const ProductCard2 = ({
           </div>
           <div className="grid max-h-60 min-h-60 place-items-center overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm sm:max-h-60 sm:min-h-60">
             <img
+              loading="lazy"
               src={imageUrl}
               className="ease bg-no-repeat object-contain transition duration-500 hover:scale-125"
               alt="Image"

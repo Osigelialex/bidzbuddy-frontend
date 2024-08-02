@@ -61,7 +61,7 @@ const EmailVerification = () => {
       ) : (invalid) ? (
         <div className="min-h-screen grid place-items-center">
           <div className="flex flex-col gap-4 items-center">
-            <img src="/expired.png" alt="Token expired" />
+            <img loading="lazy" src="/expired.png" alt="Token expired" />
             <h1 className="text-2xl">Email verification failed</h1>
             <p className="text-md w-4/5 text-center">Looks like the email verification link is invalid or has expired. Not to worry, we can send the link again</p>
             <button className="text-white bg-purple-500 px-3 py-2" onClick={handleResend}>Resend Verification link</button>

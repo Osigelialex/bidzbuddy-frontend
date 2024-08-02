@@ -181,7 +181,7 @@ const NewProductForm = () => {
           htmlFor="image"
         >
           {image && verifyValidImage(image) ? (
-            <img src={URL.createObjectURL(image)} className="w-48 h-48" />
+            <img loading="lazy" src={URL.createObjectURL(image)} className="w-48 h-48" />
           ) : (
             <AddPhotoAlternateIcon />
           )}

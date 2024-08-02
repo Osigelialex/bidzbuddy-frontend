@@ -19,6 +19,7 @@ const ProductCard = ({ name, minimumBid, imageUrl, remainingTime }) => {
         </div>
         <div className="max-h-52 min-h-52 overflow-hidden rounded-bl-xl rounded-tr-xl shadow-sm">
           <img
+            loading="lazy"
             src={imageUrl}
             className="ease h-full w-full bg-no-repeat object-cover transition duration-500 hover:scale-125"
           />

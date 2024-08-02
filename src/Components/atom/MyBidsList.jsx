@@ -55,7 +55,7 @@ export default function MyBidsTable({ mybids }) {
                 <span className="text-lg text-gray-500">{bid.productName}</span>
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
-                <img src={bid.productImageUrl} className="w-12 h-12 rounded-full cursor-pointer" onClick={() => navigate(`/products/${bid.productId}`)}  />
+                <img src={bid.productImageUrl} className="w-12 h-12 rounded-full cursor-pointer" loading="lazy" onClick={() => navigate(`/products/${bid.productId}`)}  />
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 <span className="text-lg text-gray-500">₦ {formatCurrency(bid.bidAmount)}</span>

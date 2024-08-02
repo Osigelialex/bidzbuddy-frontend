@@ -133,7 +133,7 @@ const Products = () => {
         {!loading && products.length === 0 ? (
           <div className="grid place-items-center min-h-100 text-gray-600">
             <div className="grid place-items-center">
-            <img src="/not-found.gif" alt="not found" className="w-90 h-90" />
+            <img loading="lazy" src="/not-found.gif" alt="not found" className="w-90 h-90" />
             <p className="font-poppins">No products found</p>
             </div>
           </div>

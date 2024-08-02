@@ -5,7 +5,7 @@ const WaitingProductApproval = () => {
     <div className="grid place-items-center min-h-screen">
       <div className="flex flex-col gap-4 text-center">
         <div className="p-3 mx-auto">
-          <img src="/hour-glass.gif" alt="Hourglass" />
+          <img loading='lazy' src="/hour-glass.gif" alt="Hourglass" />
         </div>
         <h1 className="text-3xl font-bold">Product Submission Received</h1>
         <p className="text-center w-2/3 mx-auto">

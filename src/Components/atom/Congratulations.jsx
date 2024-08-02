@@ -26,9 +26,9 @@ export default function Congratulations({ username, productName, productImage })
         </DialogTitle>
         <DialogContent>
           <div className='flex justify-between'>
-            <img src="/congratulations.gif" />
-            <img src={productImage} className='w-56' />
-            <img src="/congratulations.gif" />
+            <img src="/congratulations.gif" loading="lazy" />
+            <img src={productImage} className='w-56' loading='lazy' />
+            <img src="/congratulations.gif" loading='lazy' />
           </div>
         </DialogContent>
         <DialogActions>

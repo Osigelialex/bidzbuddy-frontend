@@ -41,7 +41,7 @@ const Reviews = () => {
       ) : (!loading && reviews.length === 0) ? (
         <div className="grid place-items-center min-h-screen">
           <div>
-            <img src="/no-bids-found.gif" alt="No reviews yet" className="mx-auto" />
+            <img loading="lazy" src="/no-bids-found.gif" alt="No reviews yet" className="mx-auto" />
             <h1 className="text-center mt-10 text-2xl font-semibold">No reviews yet</h1>
           </div>
         </div>

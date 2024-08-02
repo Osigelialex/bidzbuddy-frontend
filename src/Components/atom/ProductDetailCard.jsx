@@ -7,7 +7,7 @@ export default function ProductDetailCard({ image, title, remainingTime }) {
       <div className="grid place-items-center bg-gray-950 text-white">
         <RemainingTime milliseconds={remainingTime} />
       </div>
-      <img className="object-full w-full" src={image} alt={title} />
+      <img loading="lazy" className="object-full w-full" src={image} alt={title} />
     </div>
   );
 }

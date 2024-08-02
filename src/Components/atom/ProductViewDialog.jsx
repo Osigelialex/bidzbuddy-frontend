@@ -29,6 +29,7 @@ export default function ProductViewDialog({
         <div className="grid font-poppins sm:grid-cols-12">
           <div className="col-span-6">
             <img
+              loading="lazy"
               src={productImageUrl}
               alt={name}
               className="h-96 w-full object-fill"
