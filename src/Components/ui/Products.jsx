@@ -144,7 +144,7 @@ const Products = () => {
                   <Skeleton
                     key={idx}
                     variant="rectangular"
-                    width={300}
+                    width={"100%"}
                     height={300}
                     className="container"
                   />

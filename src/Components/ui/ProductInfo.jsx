@@ -83,15 +83,14 @@ const ProductInfo = ({
       />
 
       <div>
-        <h1 className="text-4xl font-bold">{name}</h1>
-        <p className="text-md mt-2 leading-7">{description}</p>
-        <p className="mt-7 sm:text-xl">
-          Current Bidding Price:{" "}
-          <span className="text-xl font-medium">
+        <h1 className="text-2xl font-bold">{name}</h1>
+        <p className="mt-3 sm:text-md">
+          <span className="text-2xl font-medium text-purple-500">
             ₦ {formatCurrency(currentBid)}
           </span>
         </p>
-
+        <p className="text-md mt-2 leading-7">{description}</p>
+        <hr className="my-10" />
         <div className="mt-7 w-full rounded-md border p-5">
           {closed && !winner ? (
             <div className="flex items-center gap-2 align-middle">

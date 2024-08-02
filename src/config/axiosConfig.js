@@ -3,7 +3,8 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 const instance = axios.create({
-  baseURL: "https://bidzbuddy.onrender.com",
+  // baseURL: "https://bidzbuddy.onrender.com",
+  baseURL: "http://localhost:8080",
   timeout: 10000
 });
 

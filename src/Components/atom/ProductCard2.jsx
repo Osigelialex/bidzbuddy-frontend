@@ -44,11 +44,11 @@ const ProductCard2 = ({
               alt="Image"
             />
           </div>
-          <div className="m-0 flex flex-col justify-between gap-2">
-            <h1 className="line-clamp-1 text-xl font-medium">{name}</h1>
-            <p className="text-md text-gray-500">
+          <div className="m-0 flex flex-col justify-between gap-2 py-5">
+            <h1 className="line-clamp-1 font-medium">{name}</h1>
+            <p className="text-gray-500">
               Current Bid:{" "}
-              <span className="text-lg font-medium text-black">
+              <span className="font-medium text-black">
                 ₦{formatCurrency(minimumBid)}
               </span>
             </p>

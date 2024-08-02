@@ -54,7 +54,7 @@ const LiveAuction = () => {
               <Skeleton
                 key={idx}
                 variant="rectangular"
-                width={300}
+                width={"100%"}
                 height={300}
               />
             ))
