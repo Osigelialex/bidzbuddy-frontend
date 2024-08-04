@@ -20,7 +20,7 @@ const Overview = () => {
       </div>
       <div className="border border-gray-100 rounded-md shadow-sm mt-8 px-3 py-5">
         <h1 className="font-semibold text-lg mb-5">Personal Information</h1>
-        <div className="grid grid-cols-2 gap-3 text-gray-500">
+        <div className="grid sm:grid-cols-2 gap-3 text-gray-500">
           <div className="flex flex-col gap-3">
             <label for="firstname">First Name</label>
             <input

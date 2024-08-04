@@ -8,12 +8,14 @@ import { BidChart } from "./BidChart";
 import { UserChart } from "./userChart";
 import { VerticalBarChart } from "./ItemsBidChart";
 import { toast } from "sonner";
+import CircularProgress from "@mui/material/CircularProgress";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({});
   const [bids, setBids] = useState([]);
   const [users, setUsers] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,12 +34,22 @@ const Dashboard = () => {
         setDashboardData(dashboardResponse.data);
         setBids(bidsResponse.data);
         setUsers(userResponse.data);
+
+        setLoading(false);
       } catch (error) {
         toast.error("An error occurred while fetching data");
       }
     };
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen grid place-items-center text-purple-500">
+        <CircularProgress size={30} />
+      </div>
+    )
+  }
 
   return (
     <div className="pb-10 font-poppins">
