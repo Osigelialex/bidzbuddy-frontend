@@ -4,12 +4,12 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mb-20 px-5 pt-16 pb-8 sm:px-16 sm:pt-14 sm:pb-16 lg:grid lg:grid-cols-2 gap-10">
-      <div className="flex flex-col justify-center text-center lg:text-left lg:justify-between sm:p-5 p-2">
+    <div className="mb-20 px-2 pt-16 pb-8 sm:px-16 sm:pt-14 sm:pb-16 lg:grid lg:grid-cols-2 gap-10">
+      <div className="flex flex-col justify-center text-center lg:text-left lg:justify-between sm:p-5">
         <p className="mb-3 text-lg font-bold text-purple-600 sm:text-xl">
           Welcome to BidzBuddy
         </p>
-        <h2 className="mb-4 text-3xl font-extrabold leading-tight sm:text-7xl">
+        <h2 className="mb-4 text-4xl font-extrabold leading-tight sm:text-7xl">
           Bid smart, Elevate your experience.
         </h2>
         <p className="mt-4 text-sm text-slate-600 sm:text-base">

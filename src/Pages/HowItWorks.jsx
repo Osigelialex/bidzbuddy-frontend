@@ -13,7 +13,7 @@ const HowItWorks = () => {
         </div>
         <div className="pt-6 pb-10 grid sm:grid-cols-2">
           <div>
-            <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">
+            <h1 className="sm:text-4xl text-2xl font-bold flex gap-2 items-center align-middle mb-3">
               <span className="font-extrabold text-purple-500">01.</span>
               How to Bid
             </h1>
@@ -31,7 +31,7 @@ const HowItWorks = () => {
             <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">
+            <h1 className="sm:text-4xl text-2xl font-bold flex gap-2 items-center align-middle mb-3">
               <span className="font-extrabold text-purple-500">02.</span>
               How to Sell
             </h1>
@@ -43,7 +43,7 @@ const HowItWorks = () => {
 
         <div className="py-10 grid sm:grid-cols-2">
           <div>
-            <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">
+            <h1 className="sm:text-4xl text-2xl font-bold flex gap-2 items-center align-middle mb-3">
               <span className="font-extrabold text-purple-500">03.</span>
               Product Approval
             </h1>
@@ -63,7 +63,7 @@ const HowItWorks = () => {
             <img loading="lazy" src="/questions.bmp" alt="Bid" className="rounded-lg w-80 h-80" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold flex gap-2 items-center align-middle mb-3">
+            <h1 className="sm:text-4xl text-2xl font-bold flex gap-2 items-center align-middle mb-3">
               <span className="font-extrabold text-purple-500">04.</span>
               How to Win
             </h1>

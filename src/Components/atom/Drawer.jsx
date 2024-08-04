@@ -8,9 +8,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthProvider";
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
+  const auth = useAuth();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -48,20 +50,38 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
         <Divider />
-        <Link to="/account/overview">
-          <ListItem key="Profile" disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link to="/login">
+        {auth.user && auth.user.role !== "ADMIN" && (
+          <Link to="/account/overview">
+            <ListItem key="Dashboard" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="My dashboard" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        )}
+        {auth.user && auth.user.role === "ADMIN" && (
+          <Link to="/admin/dashboard">
+            <ListItem key="Dashboard" disablePadding>
+              <ListItemButton>
+                <ListItemText primary="Admin dashboard" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        )}
+        {!auth.user && <Link to="/login">
           <ListItem key="Login" disablePadding>
             <ListItemButton>
-              <ListItemText primary="My Account" />
+              <ListItemText primary="Log in" />
             </ListItemButton>
           </ListItem>
-        </Link>
+        </Link>}
+        {!auth.user && <Link to="/register">
+          <ListItem key="register" disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Sign up" />
+            </ListItemButton>
+          </ListItem>
+        </Link>}
       </List>
     </Box>
   );

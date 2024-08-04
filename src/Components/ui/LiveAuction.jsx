@@ -48,7 +48,7 @@ const LiveAuction = () => {
         </div>
       )}
 
-      <div className="grid gap-4 px-5 sm:grid-cols-3">
+      <div className="grid gap-4 px-2 sm:grid-cols-3">
         {loading
           ? skeletons.map((_, idx) => (
               <Skeleton
