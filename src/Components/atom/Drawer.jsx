@@ -75,7 +75,7 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         </Link>}
-        {!auth.user && <Link to="/register">
+        {!auth.user && <Link to="/signup">
           <ListItem key="register" disablePadding>
             <ListItemButton>
               <ListItemText primary="Sign up" />
